@@ -281,33 +281,49 @@
       "status": "completed",
       "completed_at": "2026-11-08T01:26:24+01:00",
       "original_blob_sha": "e0981b306c373bb8426838cb3eb3a57ff9259b56",
-      "content_blob_sha": "55fa8ed6aa1a899898ad5840456efa9d2f6e06ea",
-      "commit_sha": "42b7f06e73abc3c64088c7dc93fe20eca389fe38",
-      "sha_note": "Resolve content blob and commit from the same atomic Git commit containing this record; self commit SHA cannot be embedded before commit creation.",
+      "content_blob_sha": "3669052b0079c8891da6b510ef35e7c223cf2511",
+      "commit_sha": null,
+      "sha_note": "Latest revision commit is the atomic commit containing this progress record; resolve via progress-file history.",
       "coverage": "保留原定义、示例、适用性、原则冲突、回答框架、自测和总结；补充变化边界、契约、DI/IoC区别、支付原子性、DRY权威、演进及失败模型。",
-      "checks": "原主题覆盖及Markdown围栏检查通过；Java17运行时存在但javac缺失，代码未执行验证。"
+      "checks": "原主题覆盖及Markdown围栏检查通过；Java17运行时存在但javac缺失，代码未执行验证。",
+      "review_status": "revised_for_self_contained_learning",
+      "reviewed_on": "2026-11-08",
+      "review_note": "原位重写提纲式章节；补全案例推理、自测答案及复习总结；保留已有后续详解。",
+      "previous_content_blob_sha": "55fa8ed6aa1a899898ad5840456efa9d2f6e06ea",
+      "original_completion_commit_sha": "42b7f06e73abc3c64088c7dc93fe20eca389fe38"
     },
     {
       "path": "01-架构师基础能力/01-架构设计原则/02-高内聚、低耦合、模块化与分层设计.md",
       "status": "completed",
       "completed_at": "2026-11-08T07:35:06+01:00",
       "original_blob_sha": "253a2ccdf60447afddab279fde9a55f51372037e",
-      "content_blob_sha": "502ef0c0977ced68a9560723559f27931f0ef4b9",
-      "commit_sha": "db62591891c90ee02d8ca162ae44748fe968425d",
-      "sha_note": "Commit SHA is resolved from history of this progress file after atomic commit; not embedded into its own commit.",
+      "content_blob_sha": "664c9ea6b58fb8051480374f5ed23439e5f9244c",
+      "commit_sha": null,
+      "sha_note": "Latest revision commit is the atomic commit containing this progress record; resolve via progress-file history.",
       "coverage": "保留原章全部内容；补充内聚判断、信息隐藏、六类耦合、模块契约、数据归属、三类拓扑、Java取消订单与版本冲突、架构测试、事务事件、渐进迁移、排障、面试问答与自测。",
-      "checks": "原主题与Markdown结构检查通过；Java和ArchUnit未执行（环境缺少javac）；SQL明确为语义示意。"
+      "checks": "原主题与Markdown结构检查通过；Java和ArchUnit未执行（环境缺少javac）；SQL明确为语义示意。",
+      "review_status": "revised_for_self_contained_learning",
+      "reviewed_on": "2026-11-08",
+      "review_note": "原位重写提纲式章节；补全案例推理、自测答案及复习总结；保留已有后续详解。",
+      "previous_content_blob_sha": "502ef0c0977ced68a9560723559f27931f0ef4b9",
+      "original_completion_commit_sha": "db62591891c90ee02d8ca162ae44748fe968425d"
     },
     {
       "path": "01-架构师基础能力/01-架构设计原则/03-可扩展性、可维护性、可测试性与可演进性.md",
       "status": "completed",
       "completed_at": "2026-11-08T13:30:22+01:00",
       "original_blob_sha": "8c523f18cc07af3d8ead4751f5ad64d0b3952ca4",
-      "content_blob_sha": "c0bc2a44b033554e0f1b6f4863b456ab2c4d9d17",
+      "content_blob_sha": "1679ebf3f7bd48692e58df2d1ce0df26881a6b7a",
       "commit_sha": null,
-      "sha_note": "Resolve own commit SHA via history of this progress file after commit; cannot embed self commit SHA.",
+      "sha_note": "Latest revision commit is the atomic commit containing this progress record; resolve via progress-file history.",
       "coverage": "保留原Scalability/Extensibility/Maintainability/Testability/Evolvability全部主题；补充质量场景、容量算术、缓存竞态、测试控制、并发迁移、故障与成本、面试追问和自测。",
-      "checks": "原文完整保留；Markdown围栏检查通过；Python容量脚本实际运行通过；Java示例未执行，压测和迁移为明确标注的教学方案。"
+      "checks": "原文完整保留；Markdown围栏检查通过；Python容量脚本实际运行通过；Java示例未执行，压测和迁移为明确标注的教学方案。",
+      "review_status": "revised_for_self_contained_learning",
+      "reviewed_on": "2026-11-08",
+      "review_note": "原位重写提纲式章节；补全案例推理、自测答案及复习总结；保留已有后续详解。",
+      "previous_content_blob_sha": "c0bc2a44b033554e0f1b6f4863b456ab2c4d9d17",
+      "original_completion_commit_sha": null
     }
-  ]
+  ],
+  "content_standard": "self-contained-interview-preparation-v2"
 }
