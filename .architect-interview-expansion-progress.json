@@ -282,7 +282,7 @@
       "completed_at": "2026-11-08T01:26:24+01:00",
       "original_blob_sha": "e0981b306c373bb8426838cb3eb3a57ff9259b56",
       "content_blob_sha": "3669052b0079c8891da6b510ef35e7c223cf2511",
-      "commit_sha": null,
+      "commit_sha": "59f4dd0ce14360f5dce925a5f2fd6267aaf66b86",
       "sha_note": "Latest revision commit is the atomic commit containing this progress record; resolve via progress-file history.",
       "coverage": "保留原定义、示例、适用性、原则冲突、回答框架、自测和总结；补充变化边界、契约、DI/IoC区别、支付原子性、DRY权威、演进及失败模型。",
       "checks": "原主题覆盖及Markdown围栏检查通过；Java17运行时存在但javac缺失，代码未执行验证。",
@@ -298,7 +298,7 @@
       "completed_at": "2026-11-08T07:35:06+01:00",
       "original_blob_sha": "253a2ccdf60447afddab279fde9a55f51372037e",
       "content_blob_sha": "664c9ea6b58fb8051480374f5ed23439e5f9244c",
-      "commit_sha": null,
+      "commit_sha": "59f4dd0ce14360f5dce925a5f2fd6267aaf66b86",
       "sha_note": "Latest revision commit is the atomic commit containing this progress record; resolve via progress-file history.",
       "coverage": "保留原章全部内容；补充内聚判断、信息隐藏、六类耦合、模块契约、数据归属、三类拓扑、Java取消订单与版本冲突、架构测试、事务事件、渐进迁移、排障、面试问答与自测。",
       "checks": "原主题与Markdown结构检查通过；Java和ArchUnit未执行（环境缺少javac）；SQL明确为语义示意。",
@@ -314,7 +314,7 @@
       "completed_at": "2026-11-08T13:30:22+01:00",
       "original_blob_sha": "8c523f18cc07af3d8ead4751f5ad64d0b3952ca4",
       "content_blob_sha": "1679ebf3f7bd48692e58df2d1ce0df26881a6b7a",
-      "commit_sha": null,
+      "commit_sha": "59f4dd0ce14360f5dce925a5f2fd6267aaf66b86",
       "sha_note": "Latest revision commit is the atomic commit containing this progress record; resolve via progress-file history.",
       "coverage": "保留原Scalability/Extensibility/Maintainability/Testability/Evolvability全部主题；补充质量场景、容量算术、缓存竞态、测试控制、并发迁移、故障与成本、面试追问和自测。",
       "checks": "原文完整保留；Markdown围栏检查通过；Python容量脚本实际运行通过；Java示例未执行，压测和迁移为明确标注的教学方案。",
@@ -323,6 +323,17 @@
       "review_note": "原位重写提纲式章节；补全案例推理、自测答案及复习总结；保留已有后续详解。",
       "previous_content_blob_sha": "c0bc2a44b033554e0f1b6f4863b456ab2c4d9d17",
       "original_completion_commit_sha": null
+    },
+    {
+      "path": "01-架构师基础能力/01-架构设计原则/04-CAP、PACELC、一致性模型与可用性权衡.md",
+      "status": "completed",
+      "completed_at": "2026-11-08T19:28:52+01:00",
+      "original_blob_sha": "73b252bf97d4432d0516492e0c168e1eab11e444",
+      "content_blob_sha": "60650726d353fa0f6ae65f28fdef5bd280f6e6b6",
+      "commit_sha": null,
+      "sha_note": "Resolve commit via history of this progress record; self SHA cannot be embedded before creation.",
+      "coverage": "原位重写全部原主题；CAP形式定义、CP/AP、PACELC、全部一致性与会话模型、Quorum限制、事务/2PC/Saga/Outbox、冲突合并、全球购物车、面试追问与完整自测答案。",
+      "checks": "逐节自足性与原主题覆盖核对、Markdown围栏检查；Python合并脚本实际运行通过；历史论文与模型资料核验，未宣称真实网络协议得到证明。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2"
