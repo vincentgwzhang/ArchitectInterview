@@ -282,10 +282,21 @@
       "completed_at": "2026-11-08T01:26:24+01:00",
       "original_blob_sha": "e0981b306c373bb8426838cb3eb3a57ff9259b56",
       "content_blob_sha": "55fa8ed6aa1a899898ad5840456efa9d2f6e06ea",
-      "commit_sha": null,
+      "commit_sha": "42b7f06e73abc3c64088c7dc93fe20eca389fe38",
       "sha_note": "Resolve content blob and commit from the same atomic Git commit containing this record; self commit SHA cannot be embedded before commit creation.",
       "coverage": "保留原定义、示例、适用性、原则冲突、回答框架、自测和总结；补充变化边界、契约、DI/IoC区别、支付原子性、DRY权威、演进及失败模型。",
       "checks": "原主题覆盖及Markdown围栏检查通过；Java17运行时存在但javac缺失，代码未执行验证。"
+    },
+    {
+      "path": "01-架构师基础能力/01-架构设计原则/02-高内聚、低耦合、模块化与分层设计.md",
+      "status": "completed",
+      "completed_at": "2026-11-08T07:35:06+01:00",
+      "original_blob_sha": "253a2ccdf60447afddab279fde9a55f51372037e",
+      "content_blob_sha": "502ef0c0977ced68a9560723559f27931f0ef4b9",
+      "commit_sha": null,
+      "sha_note": "Commit SHA is resolved from history of this progress file after atomic commit; not embedded into its own commit.",
+      "coverage": "保留原章全部内容；补充内聚判断、信息隐藏、六类耦合、模块契约、数据归属、三类拓扑、Java取消订单与版本冲突、架构测试、事务事件、渐进迁移、排障、面试问答与自测。",
+      "checks": "原主题与Markdown结构检查通过；Java和ArchUnit未执行（环境缺少javac）；SQL明确为语义示意。"
     }
   ]
 }
