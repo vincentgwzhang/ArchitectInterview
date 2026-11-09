@@ -341,10 +341,21 @@
       "completed_at": "2026-11-09T01:30:15+01:00",
       "original_blob_sha": "3cb437e40a0e7a03d961bcaddc55eabbf2eb847a",
       "content_blob_sha": "e816b9b1c4f7dfb2737bdb8e4b6f5fbbafca4324",
-      "commit_sha": null,
+      "commit_sha": "109c2dcb171bf7a4246b0a56a348527622c12521",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖ADR目的、结构、选题、模板、完整Outbox案例、质量、生命周期、文档关系；债务与缺陷/风险/待办、分类、记录、量化排序、偿还五策略、治理、ADR结合、完整面试与自测。",
       "checks": "逐节自足性和主题覆盖人工核对，Markdown围栏检查，Python算术示例实际运行通过；案例与指标明确为教学假设，无生产实现验证声明。"
+    },
+    {
+      "path": "01-架构师基础能力/02-系统设计方法/01-需求澄清：功能需求、非功能需求与约束条件.md",
+      "status": "completed",
+      "completed_at": "2026-11-09T06:34:39Z",
+      "original_blob_sha": "2ba16b44ac48bb3052374bace2b59ac622977d33",
+      "content_blob_sha": "3ea34c5b6714da93ec134e15cadd3cb81f100895",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖功能/NFR/约束、相关方、全部提问维度、假设管理、冲突与质量场景、完整开场、错误、自测和总结；补齐成功/并发/失败语义、SLI/SLO/SLA与指标口径、RTO/RPO、安全和需求到验证的追溯。",
+      "checks": "逐节自足性与原主题覆盖人工核对；Markdown标题、表格、来源链接及围栏检查；教学假设明确，无应用代码需运行，不宣称生产SLO已验证。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2"
