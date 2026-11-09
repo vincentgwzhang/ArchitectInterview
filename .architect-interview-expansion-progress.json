@@ -330,10 +330,21 @@
       "completed_at": "2026-11-08T19:28:52+01:00",
       "original_blob_sha": "73b252bf97d4432d0516492e0c168e1eab11e444",
       "content_blob_sha": "60650726d353fa0f6ae65f28fdef5bd280f6e6b6",
-      "commit_sha": null,
+      "commit_sha": "2ea9aad3f09bd2af16a7bc0beaf6b5bcdab0bfee",
       "sha_note": "Resolve commit via history of this progress record; self SHA cannot be embedded before creation.",
       "coverage": "原位重写全部原主题；CAP形式定义、CP/AP、PACELC、全部一致性与会话模型、Quorum限制、事务/2PC/Saga/Outbox、冲突合并、全球购物车、面试追问与完整自测答案。",
       "checks": "逐节自足性与原主题覆盖核对、Markdown围栏检查；Python合并脚本实际运行通过；历史论文与模型资料核验，未宣称真实网络协议得到证明。"
+    },
+    {
+      "path": "01-架构师基础能力/01-架构设计原则/05-架构决策记录ADR与技术债管理.md",
+      "status": "completed",
+      "completed_at": "2026-11-09T01:30:15+01:00",
+      "original_blob_sha": "3cb437e40a0e7a03d961bcaddc55eabbf2eb847a",
+      "content_blob_sha": "e816b9b1c4f7dfb2737bdb8e4b6f5fbbafca4324",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖ADR目的、结构、选题、模板、完整Outbox案例、质量、生命周期、文档关系；债务与缺陷/风险/待办、分类、记录、量化排序、偿还五策略、治理、ADR结合、完整面试与自测。",
+      "checks": "逐节自足性和主题覆盖人工核对，Markdown围栏检查，Python算术示例实际运行通过；案例与指标明确为教学假设，无生产实现验证声明。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2"
