@@ -352,10 +352,21 @@
       "completed_at": "2026-11-09T06:34:39Z",
       "original_blob_sha": "2ba16b44ac48bb3052374bace2b59ac622977d33",
       "content_blob_sha": "3ea34c5b6714da93ec134e15cadd3cb81f100895",
-      "commit_sha": null,
+      "commit_sha": "b2ab16df0365eaab501955706f029a73f4dbedb2",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖功能/NFR/约束、相关方、全部提问维度、假设管理、冲突与质量场景、完整开场、错误、自测和总结；补齐成功/并发/失败语义、SLI/SLO/SLA与指标口径、RTO/RPO、安全和需求到验证的追溯。",
       "checks": "逐节自足性与原主题覆盖人工核对；Markdown标题、表格、来源链接及围栏检查；教学假设明确，无应用代码需运行，不宣称生产SLO已验证。"
+    },
+    {
+      "path": "01-架构师基础能力/02-系统设计方法/02-容量估算：QPS、并发量、存储量、带宽与增长率.md",
+      "status": "completed",
+      "completed_at": "2026-11-09T18:39:08Z",
+      "original_blob_sha": "61ece7afbb75e8fdae77ce49f53d64ad1fda7abe",
+      "content_blob_sha": "e3e6066d29965add41f638f25e7ad5af5508d0d6",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖单位、QPS/峰值/读写比、并发、实例/AZ、存储、带宽、缓存、连接、增长、图片案例、选型、错误与完整自测；补充调用放大、队列积压、恢复与成本，纠正重复余量和三AZ表述。",
+      "checks": "逐节自足性及原主题覆盖核对；标题、表格、链接与围栏检查；Python关键容量算术实际运行通过；官方过载与S3文档核验，无真实压测或生产SLO验证声明。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2"
