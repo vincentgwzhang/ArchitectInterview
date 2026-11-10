@@ -396,10 +396,21 @@
       "completed_at": "2026-11-10T12:37:22Z",
       "original_blob_sha": "01fa1b84bf8746aafb75569c5159058a167c10bb",
       "content_blob_sha": "844cb750731212d3bb60def2ed894bcd9d760a2f",
-      "commit_sha": null,
+      "commit_sha": "de51ffdbf91d7c56a88289b6e4100569dfe8b047",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖全部运行时区域、容器非堆预算、对象分配/分代/逃逸、根可达性/缓存/监听器/ThreadLocal/加载器泄漏、加载链接初始化与委派、初始化同步/JMM、dump支配树/RetainedSize、NMT/jcmd/JFR/GC日志/RSS与OOM分类；补完整实验、预算案例及面试自测推理。",
       "checks": "逐节自足性/原主题覆盖/代码触发与异常顺序人工核对；标题/围栏/链接检查；JVMS/JLS与JDK21官方资料核验；Python预算算术实际通过；环境无javac/jcmd，Java与attach诊断命令未运行且正文注明。"
+    },
+    {
+      "path": "04-Java后端架构/01-Java核心与JVM/05-GC算法、内存泄漏、性能分析与JVM调优.md",
+      "status": "completed",
+      "completed_at": "2026-11-10T18:38:57Z",
+      "original_blob_sha": "c27db71f79174694ff5d120610a3bcb5feefe04e",
+      "content_blob_sha": "2199fa005420611ce1e99732c61152d07608488c",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖GC四类目标、G1/ZGC/Shenandoah/Serial/Parallel、六步调优、泄漏/分配/Live与晋升、dump支配及保留路径、容器native余量/Xms/Xmx/百分比/RSS/throttling/OOMdump；补算法机制、G1证据路径、完整实验、上线记录与完整面试自测，纠正泄漏绝对化判断。",
+      "checks": "逐节自足性/原主题/算法与示例语义人工核对；标题/围栏/来源链接检查；官方JDK21及OpenJDK索引资料核验；Python有效负载和空间算术通过，本地OpenJDK21启动Flag与日志语法探测通过；无javac/jcmd，Java实验和attach命令未执行且正文注明。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
