@@ -385,10 +385,21 @@
       "completed_at": "2026-11-10T06:39:04Z",
       "original_blob_sha": "3c9520d1b9f715b1b3e1b43c1247019b12fa5f13",
       "content_blob_sha": "cee2ac98c647bf36e420938f3f3c28235d00187c",
-      "commit_sha": null,
+      "commit_sha": "7578c530cbab7c0aee9b102424ea50c0cc43222c",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖Future组合/apply/compose/combine/allOf、商品聚合、公共池隔离、异常/取消/Deadline与Fan-out；虚拟线程/载体/Pinning/稀缺资源；Reactive非阻塞、背压、上下文、阻塞桥接及模型选择；补完整实验、失败恢复、资源生命周期、面试追问与全部自测推理。",
       "checks": "全部正文逐节自足性、原知识点、代码依赖/完成/取消/退出语义人工核对；标题/围栏/链接检查；Java21/25、Reactive Streams/Flow和Reactor官方资料核验；只有OpenJDK21运行时，无javac/jshell，代码均未编译运行且正文明确标注。"
+    },
+    {
+      "path": "04-Java后端架构/01-Java核心与JVM/04-JVM内存模型、类加载与对象生命周期.md",
+      "status": "completed",
+      "completed_at": "2026-11-10T12:37:22Z",
+      "original_blob_sha": "01fa1b84bf8746aafb75569c5159058a167c10bb",
+      "content_blob_sha": "844cb750731212d3bb60def2ed894bcd9d760a2f",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖全部运行时区域、容器非堆预算、对象分配/分代/逃逸、根可达性/缓存/监听器/ThreadLocal/加载器泄漏、加载链接初始化与委派、初始化同步/JMM、dump支配树/RetainedSize、NMT/jcmd/JFR/GC日志/RSS与OOM分类；补完整实验、预算案例及面试自测推理。",
+      "checks": "逐节自足性/原主题覆盖/代码触发与异常顺序人工核对；标题/围栏/链接检查；JVMS/JLS与JDK21官方资料核验；Python预算算术实际通过；环境无javac/jcmd，Java与attach诊断命令未运行且正文注明。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
