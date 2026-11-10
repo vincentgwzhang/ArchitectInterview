@@ -374,10 +374,21 @@
       "completed_at": "2026-11-10T00:40:08Z",
       "original_blob_sha": "e629f1ccfd9d40920a0f10644bf577d91faf5ae4",
       "content_blob_sha": "c79838dd366c1c8bd5c2f22d99fb5d087a32085a",
-      "commit_sha": null,
+      "commit_sha": "aedc8c1b31912b6c84b7868a59e91834eff67b6a",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖JMM三性质/HB/volatile、CPU与I/O线程池及完整资源生命周期、synchronized/ReentrantLock/CAS/ABA/AtomicInteger/LongAdder、并发容器、死锁/饥饿/活锁/竞态/ThreadLocal、锁顺序与JFR/dump；补齐取消超时、安全上下文、虚拟线程版本边界、完整代码和面试/自测推理。",
       "checks": "全部正文小节自足性、原主题覆盖、代码路径和Markdown标题/围栏/链接人工核对；Java SE21及JDK21/25官方资料核验；环境只有OpenJDK21运行时，无javac/jshell，Java未编译运行，正文明确注明。"
+    },
+    {
+      "path": "04-Java后端架构/01-Java核心与JVM/03-CompletableFuture、虚拟线程与响应式编程.md",
+      "status": "completed",
+      "completed_at": "2026-11-10T06:39:04Z",
+      "original_blob_sha": "3c9520d1b9f715b1b3e1b43c1247019b12fa5f13",
+      "content_blob_sha": "cee2ac98c647bf36e420938f3f3c28235d00187c",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖Future组合/apply/compose/combine/allOf、商品聚合、公共池隔离、异常/取消/Deadline与Fan-out；虚拟线程/载体/Pinning/稀缺资源；Reactive非阻塞、背压、上下文、阻塞桥接及模型选择；补完整实验、失败恢复、资源生命周期、面试追问与全部自测推理。",
+      "checks": "全部正文逐节自足性、原知识点、代码依赖/完成/取消/退出语义人工核对；标题/围栏/链接检查；Java21/25、Reactive Streams/Flow和Reactor官方资料核验；只有OpenJDK21运行时，无javac/jshell，代码均未编译运行且正文明确标注。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
