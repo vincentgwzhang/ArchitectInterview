@@ -429,10 +429,21 @@
       "completed_at": "2026-11-11T06:42:21Z",
       "original_blob_sha": "2281d7550cb72d9b9c4d21b5d9a795ace0bc255a",
       "content_blob_sha": "62b9ce6c61933c1bd41723ceb5bb3fab80d4f57c",
-      "commit_sha": null,
+      "commit_sha": "fd797405c9c1a944f2a6817dd54c274d02c3bb76",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖Externalized Configuration/配置优先级与来源排障、ConfigurationProperties与Validation/Fail Fast、Profile与同Artifact/Secret管理、内部Starter与受控覆盖/升级影响面、Actuator健康/指标/信息/环境与安全脱敏、Liveness/Readiness；扩展Startup Probe、动态配置快照/资源重建/回滚、Feature Flag与配置治理，完整事故推演及面试追问、8道自测完整推理。纠正NotBlank URI与Positive Duration类型不匹配。",
       "checks": "逐节自足性/原主题覆盖/并发失败语义与示例一致性人工验收；14个围栏配对、标题与来源链接检查；Boot3.5/Jakarta Validation3.0/Kubernetes官方资料核验；当前无javac/Maven/Spring依赖，Java及Spring/Kubernetes示例未运行，正文明确验证边界。"
+    },
+    {
+      "path": "04-Java后端架构/02-Spring生态/03-Spring-MVC、WebFlux与请求处理模型.md",
+      "status": "completed",
+      "completed_at": "2026-11-11T12:36:33Z",
+      "original_blob_sha": "43a4d59cbb1abdb04b9594df097901844d6bf991",
+      "content_blob_sha": "fc3cf2cfa87c39f3e5aa1c5e3deb2e80e3eb2226",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖MVC/WebFlux模型与选择、虚拟线程/阻塞隔离、请求全部生命周期、背压边界、Problem Details及Context；补分派机制、完整WebClient聚合、空源与取消、流式资源和事务边界、容量与故障推演、完整面试追问及8题答案。",
+      "checks": "逐节自足性与原主题覆盖人工检查；代码执行顺序/取消与空源语义核对；10围栏配对与来源链接检查；Spring6.2/Boot3.5/Reactor一手文档核验；代码及网络实验未运行，正文明确执行边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
