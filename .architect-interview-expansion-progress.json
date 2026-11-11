@@ -407,10 +407,21 @@
       "completed_at": "2026-11-10T18:38:57Z",
       "original_blob_sha": "c27db71f79174694ff5d120610a3bcb5feefe04e",
       "content_blob_sha": "2199fa005420611ce1e99732c61152d07608488c",
-      "commit_sha": null,
+      "commit_sha": "3b96eeb6fa8004e2aba687f16a3190b0a1f60165",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖GC四类目标、G1/ZGC/Shenandoah/Serial/Parallel、六步调优、泄漏/分配/Live与晋升、dump支配及保留路径、容器native余量/Xms/Xmx/百分比/RSS/throttling/OOMdump；补算法机制、G1证据路径、完整实验、上线记录与完整面试自测，纠正泄漏绝对化判断。",
       "checks": "逐节自足性/原主题/算法与示例语义人工核对；标题/围栏/来源链接检查；官方JDK21及OpenJDK索引资料核验；Python有效负载和空间算术通过，本地OpenJDK21启动Flag与日志语法探测通过；无javac/jcmd，Java实验和attach命令未执行且正文注明。"
+    },
+    {
+      "path": "04-Java后端架构/02-Spring生态/01-IoC、DI、AOP、Bean生命周期与自动配置.md",
+      "status": "completed",
+      "completed_at": "2026-11-11T00:34:28Z",
+      "original_blob_sha": "6940aaadd23995abefb825d3de37c0a61510068d",
+      "content_blob_sha": "03274021847b8545b8fc8294720ee58a9007444e",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖IoC/DI与注入/ServiceLocator、生命周期及PostConstruct、Scope/singleton并发、AOP横切与代理/自调用/final/private、自动配置类路径/属性/条件/报告/Starter元数据、循环/歧义/代理失效/启动脆弱；补BeanDefinition/BFPP/BPP、完整默认退让示例/四类测试、代理实验及完整面试自测。",
+      "checks": "逐节自足性/原主题覆盖/代码与条件及生命周期语义人工核对；标题/围栏/来源链接检查；固定Framework6.2/Boot3.5官方资料核验；当前无javac/Maven/Spring依赖，Java及ContextRunner测试未运行且正文明确说明，不宣称测试通过。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
