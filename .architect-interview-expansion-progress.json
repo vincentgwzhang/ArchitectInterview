@@ -451,10 +451,21 @@
       "completed_at": "2026-11-11T18:39:10Z",
       "original_blob_sha": "4984ca99e23f247b0090f41c4f357125d1f1967a",
       "content_blob_sha": "3b6583f9e7a92559706c14fae1dbe74f63298b94",
-      "commit_sha": null,
+      "commit_sha": "ecfa3d018677d77a5654c8442177d4ed6cc622af",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖JPA实体/上下文/脏检查/映射/DTO、N+1与抓取优化/Cascade/equals、代理边界及全部事务传播/回滚规则、隔离异常与乐观/悲观锁、连接总预算与指标、OSIV；补完整版本锁代码、flush与commit/merge、保存点限制、REQUIRES_NEW池耗尽、Outbox/幂等、批处理、完整面试追问与9题推理答案。",
       "checks": "逐节自足性及原主题覆盖人工验收；代码/并发失败/提交时点核对；12围栏配对和来源链接检查；固定Spring6.2/DataJPA3.5/Hibernate6.6及Hikari官方资料核验；Java/SQL/数据库并发实验未运行，正文明确验证边界。"
+    },
+    {
+      "path": "04-Java后端架构/02-Spring生态/05-Spring-Security、OAuth2、OIDC与方法级鉴权.md",
+      "status": "completed",
+      "completed_at": "2026-11-12T00:33:44Z",
+      "original_blob_sha": "115261d6afe4ad523074cdd2f051c7a8fba46524",
+      "content_blob_sha": "ae72d8eb08cbf61fce2ec35c12929c16d33f66c2",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖认证/授权、OAuth/OIDC、Code+PKCE/ClientCredentials/WorkloadIdentity、Access/ID/Refresh Token与JWT/Opaque验证、Spring请求链及方法鉴权/IDOR、Tenant、CSRF/Session/XSS/BFF、最小权限/轮换/审计/Breakglass；补完整API配置、受众及authority前缀、数据范围服务契约、撤销故障语义、完整面试追问与9题推理答案。",
+      "checks": "逐节自足性与原主题覆盖人工验收；代码权限/前缀/CSRF前提与对象范围一致性核对；10围栏配对和官方来源链接检查；Security6.5及RFC9700/7636/7662、OIDC一手核验；代码/浏览器/身份平台实验未运行，正文明确验证边界及未实现持久化契约。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
