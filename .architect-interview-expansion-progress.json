@@ -484,10 +484,21 @@
       "completed_at": "2026-11-12T12:35:02Z",
       "original_blob_sha": "4c362f87c59b8713ead590579da1224b8debd8ca",
       "content_blob_sha": "718beeb6e4174c61e2b377e42a3e7bc3c39c25b4",
-      "commit_sha": null,
+      "commit_sha": "996260445940d0885fbc089071e52db84d6f40bd",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖Offset/Keyset与唯一稳定排序、Cursor完整性/不透明、FilterSort白名单/复杂度/索引、Batch容量/原子或部分成功/逐项错误幂等/异步Job、MergePatch/JSONPatch缺失Null只读、ETag/IfMatch及响应计数；纠正IfMatch失败412与业务409；补混合排序/快照边界/恢复故障推演、完整面试追问及9题推理。",
       "checks": "逐节自足性与原知识点人工验收；24围栏配对/SQL谓词与JSON示例核对；PostgreSQL17/RFC一手核验；Python实际通过12条数据降序/混合方向键集遍历及探测行保留检查；真实数据库/HTTP及批量恢复未运行，正文明确边界。"
+    },
+    {
+      "path": "04-Java后端架构/03-API设计/03-API版本、向后兼容、幂等性与错误模型.md",
+      "status": "completed",
+      "completed_at": "2026-11-12T18:37:54Z",
+      "original_blob_sha": "f39d54da833c73a92e812fbde85074c3b36af172",
+      "content_blob_sha": "fe7a901614d752428738131e52cef93e6d9bd097",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖全部兼容添加/字段语义/枚举/默认值、CDC/Schema/流量验证、URI/Header/MediaType版本、幂等Key/指纹/状态/结果/冲突/处理中/保留窗口、错误/结果未知及弃用使用观测/SDK适配/Sunset；补扩展迁移收缩、唯一约束和事务崩溃窗口、跨版本与外部副作用、恢复/成本/撤权、完整面试追问及9题答案。",
+      "checks": "原知识点覆盖与逐节自足性人工验收；6围栏配对/SQL及错误示例一致性/来源检查；RFC9110/9457/9745/8594/8785、PostgreSQL17和Pact一手核验；未运行SQL/真实并发/支付故障实验，正文明确教学与执行边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
