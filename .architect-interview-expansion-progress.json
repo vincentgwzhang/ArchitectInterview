@@ -462,10 +462,21 @@
       "completed_at": "2026-11-12T00:33:44Z",
       "original_blob_sha": "115261d6afe4ad523074cdd2f051c7a8fba46524",
       "content_blob_sha": "ae72d8eb08cbf61fce2ec35c12929c16d33f66c2",
-      "commit_sha": null,
+      "commit_sha": "2a260be60226c6bbb7fd7e9f3fd0a0b581836b25",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖认证/授权、OAuth/OIDC、Code+PKCE/ClientCredentials/WorkloadIdentity、Access/ID/Refresh Token与JWT/Opaque验证、Spring请求链及方法鉴权/IDOR、Tenant、CSRF/Session/XSS/BFF、最小权限/轮换/审计/Breakglass；补完整API配置、受众及authority前缀、数据范围服务契约、撤销故障语义、完整面试追问与9题推理答案。",
       "checks": "逐节自足性与原主题覆盖人工验收；代码权限/前缀/CSRF前提与对象范围一致性核对；10围栏配对和官方来源链接检查；Security6.5及RFC9700/7636/7662、OIDC一手核验；代码/浏览器/身份平台实验未运行，正文明确验证边界及未实现持久化契约。"
+    },
+    {
+      "path": "04-Java后端架构/03-API设计/01-REST资源建模、HTTP语义与状态码.md",
+      "status": "completed",
+      "completed_at": "2026-11-12T06:42:11Z",
+      "original_blob_sha": "0296e4d4f8711b7ebde507bba9a8d66f96869493",
+      "content_blob_sha": "72dd8c14fbaf88b751bf33610af221a7753a05d6",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖资源/关系/Command建模、GET/PUT/PATCH/POST/DELETE与安全幂等、全部原状态码、Location/ETag/IfMatch/CacheControl/RetryAfter/IdempotencyKey/CorrelationID、ProblemDetails与Ownership安全；补完整创建/异步取消报文、条件请求原子性与缓存隔离、错误分类恢复、失败推演及完整面试追问和9道自测答案。",
+      "checks": "逐节自足性与原知识点覆盖人工验收；16围栏配对、报文/状态/字段一致性与来源链接检查；RFC9110/9111/9457/5789/7396/6902/6585一手核验；明确区分协议保证与自定义契约；示例未端到端运行，正文明确验证边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
