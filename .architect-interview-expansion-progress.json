@@ -495,10 +495,21 @@
       "completed_at": "2026-11-12T18:37:54Z",
       "original_blob_sha": "f39d54da833c73a92e812fbde85074c3b36af172",
       "content_blob_sha": "fe7a901614d752428738131e52cef93e6d9bd097",
-      "commit_sha": null,
+      "commit_sha": "38b93ad284109e5e3bc9acc359a4c47f57bad5a7",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖全部兼容添加/字段语义/枚举/默认值、CDC/Schema/流量验证、URI/Header/MediaType版本、幂等Key/指纹/状态/结果/冲突/处理中/保留窗口、错误/结果未知及弃用使用观测/SDK适配/Sunset；补扩展迁移收缩、唯一约束和事务崩溃窗口、跨版本与外部副作用、恢复/成本/撤权、完整面试追问及9题答案。",
       "checks": "原知识点覆盖与逐节自足性人工验收；6围栏配对/SQL及错误示例一致性/来源检查；RFC9110/9457/9745/8594/8785、PostgreSQL17和Pact一手核验；未运行SQL/真实并发/支付故障实验，正文明确教学与执行边界。"
+    },
+    {
+      "path": "04-Java后端架构/03-API设计/04-OpenAPI、Contract-First与消费者驱动契约测试.md",
+      "status": "completed",
+      "completed_at": "2026-11-13T00:31:44Z",
+      "original_blob_sha": "c0ea2813539b987769e3201fdfb9f4a46f97fd6e",
+      "content_blob_sha": "8fa271cba53895e58adc45150557f97f709e3aff",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖ContractFirst/CodeFirst与语义、OAS版本控制/Lint/Diff/生成边界代码/Catalog、CDC消费者发布与提供方CI验证及Ownership/Broker、Mock/Sandbox限制、全部原Breaking维度；补完整OAS3.1.1示例、required/null/default/security、真实客户端与ProviderState、版本矩阵发布回滚、端到端治理及完整面试追问和9题推理。",
+      "checks": "逐节自足性和原主题人工验收；4围栏配对/示例与说明一致性核对；OAS3.1.1/Pact/Generator官方核验；实际通过YAML解析、组件Draft202012Schema自检及正反例；未用完整OAS验证器，未运行Pact/SDK编译/真实服务门禁，正文明确验证范围。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
