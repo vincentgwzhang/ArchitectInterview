@@ -506,10 +506,21 @@
       "completed_at": "2026-11-13T00:31:44Z",
       "original_blob_sha": "c0ea2813539b987769e3201fdfb9f4a46f97fd6e",
       "content_blob_sha": "8fa271cba53895e58adc45150557f97f709e3aff",
-      "commit_sha": null,
+      "commit_sha": "1328a788022f6d9f47736f062691336d39dea6e2",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖ContractFirst/CodeFirst与语义、OAS版本控制/Lint/Diff/生成边界代码/Catalog、CDC消费者发布与提供方CI验证及Ownership/Broker、Mock/Sandbox限制、全部原Breaking维度；补完整OAS3.1.1示例、required/null/default/security、真实客户端与ProviderState、版本矩阵发布回滚、端到端治理及完整面试追问和9题推理。",
       "checks": "逐节自足性和原主题人工验收；4围栏配对/示例与说明一致性核对；OAS3.1.1/Pact/Generator官方核验；实际通过YAML解析、组件Draft202012Schema自检及正反例；未用完整OAS验证器，未运行Pact/SDK编译/真实服务门禁，正文明确验证范围。"
+    },
+    {
+      "path": "04-Java后端架构/03-API设计/05-REST、GraphQL、gRPC与异步API的选择.md",
+      "status": "completed",
+      "completed_at": "2026-11-13T06:37:07Z",
+      "original_blob_sha": "933ae2ce2e935e4fd39a5958a9204b31d9a65612",
+      "content_blob_sha": "68ca896b7896d06ac6dd24eaa4220e46b9c5a581",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖REST及缓存/OverUnderFetch/BFF、GraphQL选择/Resolver领域边界/成本/N+1/DataLoader/授权/PersistedQuery/Cache/Evolution、gRPC类型/HTTP2/Streaming/Browser/Proxy/reserved、异步解耦/削峰/最终一致/重复/顺序/观测/AsyncAPIRegistry及全部选择维度；补执行机制、结果未知/Deadline、Outbox及事务去重、任务状态、组合演进、排障与完整面试追问及10题推理答案。",
+      "checks": "全部正文逐节自足性、原主题覆盖与示例字段/类型/失败路径人工核对；14围栏配对及标题/来源链接检查；HTTP/GraphQL2021/Protobuf/gRPC/Kafka4.1/AsyncAPI3.0一手核验；Python实际通过批量顺序缺失重复对齐、成本/积压/Deadline/RTT/重试算术；未运行GraphQL执行器/protoc/gRPC/真实缓存或消息故障实验，正文明确验证边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
