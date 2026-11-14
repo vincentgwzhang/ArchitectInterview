@@ -561,10 +561,21 @@
       "completed_at": "2026-11-14T12:35:35Z",
       "original_blob_sha": "cd1fa1c0f6e6660b54ed31b3f6f7a7305396319e",
       "content_blob_sha": "d7797d36ceceb8c49a265e7b8eff29d40cfc857a",
-      "commit_sha": null,
+      "commit_sha": "80678bf8b094e9c8b4f32222e46783c3b28fd6b3",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖Aside/Through/Behind及陈旧预算、负缓存/校验/Bloom/限流、SingleFlight/互斥/逻辑过期/刷新、TTL抖动预热MultiAZ熔断DB保护卸载、HotBigKey与扫描、TenantVersion/序列化权限/LeaseFencing、全部监控；补旧读晚回填反例/水位边界、负键容量攻击、跨实例回源预算、原子解锁Lua与租约失效、完整算法/失效Outbox/恢复排障、完整面试追问和10题推理。",
       "checks": "全部正文逐节自足性及原主题覆盖人工检查；10围栏配对/命令参数/失败路径/来源链接核对；Redis官方淘汰复制锁SET/EVAL/SCAN/UNLINK资料核验；Python实际通过回源预算/比较删除/旧值回填时序/有界TTL抖动逻辑；未运行Redis实例/Java集成/故障切换或负载，正文明确验证边界。"
+    },
+    {
+      "path": "04-Java后端架构/04-数据与持久化/05-SQL、NoSQL、搜索引擎与向量数据库选型.md",
+      "status": "completed",
+      "completed_at": "2026-11-14T18:33:16Z",
+      "original_blob_sha": "652acf9cd4a601d3dafbb3db8c64861da1b4379c",
+      "content_blob_sha": "20b78f2a483b14d11646eb60ecc3ba33dc94430d",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖全部访问维度、SQL关系约束JoinACID默认起点、KVDocument分区热点跨片Schema、WideColumnTimeSeries指标事件、全文相关性分面/CDCEventLagRebuild、VectorFilterANNEmbeddingVersionEval及PG扩展、Polyglot备份安全技能监控一致性TCO；补存储执行机制/文档生命周期/标签基数/近实时与权限/精确及ANN取舍/完整vectorSQL与模型切分删除治理、采购案例迁移验证、完整面试追问及10题推理。",
+      "checks": "原知识点覆盖与全部正文逐节自足性人工验收；2围栏配对/标题/SQL字段与过滤距离语义/来源链接检查；PG17/DynamoDB/MongoDB/Cassandra/ES8.19/pgvector一手核验；Python实际通过余弦距离、租户过滤精确排序与分区扇出；未执行真实数据库/索引/ANN/负载或召回基准，正文明确验证边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
