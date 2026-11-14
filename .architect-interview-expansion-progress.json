@@ -539,10 +539,21 @@
       "completed_at": "2026-11-14T00:37:23Z",
       "original_blob_sha": "6bc4dff004da10941eba4341f32c18cf72ab413e",
       "content_blob_sha": "feb5f3418ee33c91445b95f21598034311cc5a79",
-      "commit_sha": null,
+      "commit_sha": "8cd36d241d9f0e2fc614435db15514e90f96ddc9",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖Btree/复合最左/覆盖/写放大Vacuum迁移、实际计划/扫描JoinSortIO/统计倾斜相关性及非索引慢因、行表意向MVCC及长事务、RC/RR/Serializable/LostUpdate/WriteSkew、死锁Victim/全事务幂等重试/顺序与范围、全部监控；补PG17与InnoDB8.4边界、索引实验/双会话死锁和预期状态、SSI/不存在行/阻塞链、完整面试追问及10题答案。",
       "checks": "全部正文逐节自足性及原主题覆盖人工验收；18围栏配对/标题/SQL字段与事务时序/来源链接检查；PG17及MySQL8.4官方核验；Python实际通过rows*loops、死锁回滚重试预期状态、写偏差逻辑和教学数据结果基数；未执行真实数据库SQL/计划/并发/性能实验，正文明确执行边界。"
+    },
+    {
+      "path": "04-Java后端架构/04-数据与持久化/03-ACID、事务边界、乐观锁与悲观锁.md",
+      "status": "completed",
+      "completed_at": "2026-11-14T06:34:46Z",
+      "original_blob_sha": "848dd256e3a0feece447d18e38cb923e34465171",
+      "content_blob_sha": "c2428b0bbe0be6ef0d2b9158fbe9131385b30cae",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖ACID及DomainConstraint/事务边界、本地与HTTPKafka多库边界、OutboxSagaIdempotencyReconciliation、版本条件及冲突重读Merge409、ForUpdate短事务/等待死锁吞吐、文档/库存/高价值序列选择；补WAL故障模型/flushcommit/未知结果、Spring代理与线程、JPA批量版本边界、完整租户转账DDL算法与五故障点、预留fencing/指标、完整面试追问及10题推理。",
+      "checks": "全部正文逐节自足性与原主题覆盖人工核对；10围栏配对/字段参数/事务失败时序/来源链接检查；PG17/Spring6.2/JakartaPersistence3.2一手核验并区分依赖基线；Python状态模型实际通过回滚/同ID去重/独立操作/余额守恒及陈旧版本；未运行真实数据库/框架集成/崩溃与支付实验，正文明确边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
