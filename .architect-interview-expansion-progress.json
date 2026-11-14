@@ -550,10 +550,21 @@
       "completed_at": "2026-11-14T06:34:46Z",
       "original_blob_sha": "848dd256e3a0feece447d18e38cb923e34465171",
       "content_blob_sha": "c2428b0bbe0be6ef0d2b9158fbe9131385b30cae",
-      "commit_sha": null,
+      "commit_sha": "697fa0eb338e59765a5c8a3b4d09db60265e0a64",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖ACID及DomainConstraint/事务边界、本地与HTTPKafka多库边界、OutboxSagaIdempotencyReconciliation、版本条件及冲突重读Merge409、ForUpdate短事务/等待死锁吞吐、文档/库存/高价值序列选择；补WAL故障模型/flushcommit/未知结果、Spring代理与线程、JPA批量版本边界、完整租户转账DDL算法与五故障点、预留fencing/指标、完整面试追问及10题推理。",
       "checks": "全部正文逐节自足性与原主题覆盖人工核对；10围栏配对/字段参数/事务失败时序/来源链接检查；PG17/Spring6.2/JakartaPersistence3.2一手核验并区分依赖基线；Python状态模型实际通过回滚/同ID去重/独立操作/余额守恒及陈旧版本；未运行真实数据库/框架集成/崩溃与支付实验，正文明确边界。"
+    },
+    {
+      "path": "04-Java后端架构/04-数据与持久化/04-Redis缓存模式、缓存穿透、击穿与雪崩.md",
+      "status": "completed",
+      "completed_at": "2026-11-14T12:35:35Z",
+      "original_blob_sha": "cd1fa1c0f6e6660b54ed31b3f6f7a7305396319e",
+      "content_blob_sha": "d7797d36ceceb8c49a265e7b8eff29d40cfc857a",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖Aside/Through/Behind及陈旧预算、负缓存/校验/Bloom/限流、SingleFlight/互斥/逻辑过期/刷新、TTL抖动预热MultiAZ熔断DB保护卸载、HotBigKey与扫描、TenantVersion/序列化权限/LeaseFencing、全部监控；补旧读晚回填反例/水位边界、负键容量攻击、跨实例回源预算、原子解锁Lua与租约失效、完整算法/失效Outbox/恢复排障、完整面试追问和10题推理。",
+      "checks": "全部正文逐节自足性及原主题覆盖人工检查；10围栏配对/命令参数/失败路径/来源链接核对；Redis官方淘汰复制锁SET/EVAL/SCAN/UNLINK资料核验；Python实际通过回源预算/比较删除/旧值回填时序/有界TTL抖动逻辑；未运行Redis实例/Java集成/故障切换或负载，正文明确验证边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
