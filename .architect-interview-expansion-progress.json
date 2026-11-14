@@ -528,10 +528,21 @@
       "completed_at": "2026-11-13T18:37:01Z",
       "original_blob_sha": "2942c92a2959792706e763d51bc2d449d517dde1",
       "content_blob_sha": "aa8532ad8bf9b014de1180cc8690a637904614b2",
-      "commit_sha": null,
+      "commit_sha": "ca1421e7bd5550e9b2bc2248a69fe1cb9d462e4f",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖领域不变量/事务/访问模式/身份/基数/生命周期/所有权、1NF2NF3NF与异常、快照/汇总/权威来源/事务CDC事件对账、自然代理键/UUID/唯一约束、金额币种/UTC业务时区/审计、ExpandContract；补候选键/函数依赖/BCNF与无损依赖保持、完整租户DDL、并发约束/重建水位/回填竞态、排障及完整面试追问和10题推理。",
       "checks": "全部正文逐节自足性和原主题覆盖人工检查；4围栏配对/标题/来源链接/SQL字段与说明核对；PostgreSQL17官方文档核验；Python实际通过Decimal金额及候选键BCNF依赖闭包验证；未执行PostgreSQL DDL/并发迁移/负载实验，正文明确边界。"
+    },
+    {
+      "path": "04-Java后端架构/04-数据与持久化/02-索引、执行计划、锁、隔离级别与死锁.md",
+      "status": "completed",
+      "completed_at": "2026-11-14T00:37:23Z",
+      "original_blob_sha": "6bc4dff004da10941eba4341f32c18cf72ab413e",
+      "content_blob_sha": "feb5f3418ee33c91445b95f21598034311cc5a79",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖Btree/复合最左/覆盖/写放大Vacuum迁移、实际计划/扫描JoinSortIO/统计倾斜相关性及非索引慢因、行表意向MVCC及长事务、RC/RR/Serializable/LostUpdate/WriteSkew、死锁Victim/全事务幂等重试/顺序与范围、全部监控；补PG17与InnoDB8.4边界、索引实验/双会话死锁和预期状态、SSI/不存在行/阻塞链、完整面试追问及10题答案。",
+      "checks": "全部正文逐节自足性及原主题覆盖人工验收；18围栏配对/标题/SQL字段与事务时序/来源链接检查；PG17及MySQL8.4官方核验；Python实际通过rows*loops、死锁回滚重试预期状态、写偏差逻辑和教学数据结果基数；未执行真实数据库SQL/计划/并发/性能实验，正文明确执行边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
