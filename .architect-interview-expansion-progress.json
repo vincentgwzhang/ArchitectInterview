@@ -594,10 +594,21 @@
       "completed_at": "2026-11-15T06:38:20Z",
       "original_blob_sha": "4118489d9c26603a4544f22d126298210b6fdc53",
       "content_blob_sha": "8a44f5f3240adff396bcc18d8afe065d9217accc",
-      "commit_sha": null,
+      "commit_sha": "d60c29fd6b118a1cc2ef593efe103fd476b07461",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖Thread/DB/HTTP/Queue/Memory有界、50Pod连接预算与扩容/代理/事务时长、JDBC/Kafka/API批处理及部分失败幂等、BoundedQueue/Semaphore/ReactiveDemand/429503/Lag扩容/LoadShedding及跨协议边界、Deadline预算与全部监控；补线程池提交拒绝关闭饥饿、集群发布峰值预算、字节限制与Flush所有权、提交结果未知恢复、故障排空推演、4组完整面试追问及8题自测答案。",
       "checks": "全部49标题章节逐节自足性与原主题人工核对；8围栏配对及标题去重检查；JavaSE21/HikariCP/ReactiveStreams1.0.4/Kafka4.0/RFC官方文档核验；Python实际通过9项容量与批处理算术断言；Java片段未编译运行，未连接真实DB/消息系统或执行压测，正文明确验证边界。"
+    },
+    {
+      "path": "04-Java后端架构/05-后端性能与可靠性/03-超时、重试、熔断、隔离与限流.md",
+      "status": "completed",
+      "completed_at": "2026-11-15T12:37:51.382Z",
+      "original_blob_sha": "556bbd674c1cfd6e8991462a03e0656a5aa94f9c",
+      "content_blob_sha": "7bdb77043dd88c2116049ecc028d5023a6a3a578",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖Timeout/Deadline/写结果未知、Transient重试/BackoffJitter次数Budget多层放大、熔断慢调用状态探测与依赖操作范围、Bulkhead池许可队列及租户、四类限流及成本429、CacheStaleDefault业务降级、RetryHedgingFallback风暴；补分布式额度与故障策略、组合统计口径、完整订单故障推演/验证、4组面试追问及9题推理答案。",
+      "checks": "全部正文逐节自足性及原主题人工核对；围栏/标题/来源与计算一致性检查；Resilience4j/AWS/RFC一手核验；Python实际通过7项预算/放大/令牌及总流量断言；未运行Java或真实框架/网络/支付实验，正文明确验证边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
