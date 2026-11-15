@@ -583,10 +583,21 @@
       "completed_at": "2026-11-15T00:40:29Z",
       "original_blob_sha": "9f8cae9df224a1748930a9193f647f3d85d891e2",
       "content_blob_sha": "7cf8ad9e96eacdd09c7ee8391dff0b85a3c6adb0",
-      "commit_sha": null,
+      "commit_sha": "16888acc13086c16031912f6835f1b63eb967793",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖全部Baseline负载数据环境指标、LoadStressSpikeSoakFailover与认证倾斜冷热依赖、JFRAsyncCPUAllocationLockIO/GCHeap/TraceCriticalPath/DBPlanSlow/ThreadBlockDeadlockPool、MetricLayerProfileHypothesis单变更重测副作用、饱和非线性队列及全部误区；补开放闭环/协调遗漏/Little/Amdahl、目标实际完成口径与工具自证、完整实验方案记录、故障容量/排障推理、完整面试追问及10题答案。",
       "checks": "全部正文逐节自足性及原知识点人工核对；6围栏配对/命令与预算一致性/标题来源检查；JDK21/k6/async-profiler/PG17/JMH官方核验；Python实际通过平均并发、闭环速率、积压、Amdahl及失一实例容量算术；未执行真实服务压测/剖析/dump/数据库或故障实验，正文明确边界。"
+    },
+    {
+      "path": "04-Java后端架构/05-后端性能与可靠性/02-连接池、线程池、批处理与背压.md",
+      "status": "completed",
+      "completed_at": "2026-11-15T06:38:20Z",
+      "original_blob_sha": "4118489d9c26603a4544f22d126298210b6fdc53",
+      "content_blob_sha": "8a44f5f3240adff396bcc18d8afe065d9217accc",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖Thread/DB/HTTP/Queue/Memory有界、50Pod连接预算与扩容/代理/事务时长、JDBC/Kafka/API批处理及部分失败幂等、BoundedQueue/Semaphore/ReactiveDemand/429503/Lag扩容/LoadShedding及跨协议边界、Deadline预算与全部监控；补线程池提交拒绝关闭饥饿、集群发布峰值预算、字节限制与Flush所有权、提交结果未知恢复、故障排空推演、4组完整面试追问及8题自测答案。",
+      "checks": "全部49标题章节逐节自足性与原主题人工核对；8围栏配对及标题去重检查；JavaSE21/HikariCP/ReactiveStreams1.0.4/Kafka4.0/RFC官方文档核验；Python实际通过9项容量与批处理算术断言；Java片段未编译运行，未连接真实DB/消息系统或执行压测，正文明确验证边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
