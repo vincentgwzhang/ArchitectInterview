@@ -605,10 +605,21 @@
       "completed_at": "2026-11-15T12:37:51.382Z",
       "original_blob_sha": "556bbd674c1cfd6e8991462a03e0656a5aa94f9c",
       "content_blob_sha": "7bdb77043dd88c2116049ecc028d5023a6a3a578",
-      "commit_sha": null,
+      "commit_sha": "94aa193307ed1e0935109cc26769890de6b15470",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖Timeout/Deadline/写结果未知、Transient重试/BackoffJitter次数Budget多层放大、熔断慢调用状态探测与依赖操作范围、Bulkhead池许可队列及租户、四类限流及成本429、CacheStaleDefault业务降级、RetryHedgingFallback风暴；补分布式额度与故障策略、组合统计口径、完整订单故障推演/验证、4组面试追问及9题推理答案。",
       "checks": "全部正文逐节自足性及原主题人工核对；围栏/标题/来源与计算一致性检查；Resilience4j/AWS/RFC一手核验；Python实际通过7项预算/放大/令牌及总流量断言；未运行Java或真实框架/网络/支付实验，正文明确验证边界。"
+    },
+    {
+      "path": "04-Java后端架构/05-后端性能与可靠性/04-幂等、去重、补偿与最终一致性.md",
+      "status": "completed",
+      "completed_at": "2026-11-15T18:40:18.583Z",
+      "original_blob_sha": "bcd9714f59deff5a48fbe2a35a003c17544e76a1",
+      "content_blob_sha": "5598a68c1ac3d31eb7a71b32d01cc337c8a997ea",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖幂等Key/Fingerprint/ProcessingResult与原子写保留并发、KafkaSQS至少一次/ProcessedTable本地事务/自然键版本Upsert、Saga退款库存释放非Rollback及失败重试审计人工、SourceOfTruth/Staleness/收敛冲突Reconciliation中间状态SLO、Unknown查询Callback；补完整DDL与快照并发边界/OutboxInbox/租约栅栏/增量缺口/补偿迟到/对账修复/崩溃矩阵、4组完整面试追问及10题推理。",
+      "checks": "全部46标题逐节自足性与原主题人工核对；4围栏配对与DDL字段/算法/失败时序/来源检查；PG17/Kafka4.1/SQS/AWS一手核验；Python实际通过8项事务去重回滚/版本缺口/容量SLO断言；未运行真实数据库并发、KafkaSQS、支付及恢复实验，正文明确验证边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
