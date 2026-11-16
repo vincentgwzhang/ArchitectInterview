@@ -627,10 +627,21 @@
       "completed_at": "2026-11-16T00:42:17.965Z",
       "original_blob_sha": "4b56545985e931b0dc701ccad7d28e2912581cf9",
       "content_blob_sha": "5fd5dd57676f9792f258b904a2187b8584546c5d",
-      "commit_sha": null,
+      "commit_sha": "063b055a11a793607acbfabef74948d24841f4a6",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖MetricsLogsTraces与Trace/Business/Version/RegionAZ关联、JSON稳定事件错误码订单敏感数据与单边界堆栈、REDUSE及低基数、OTel上下文HTTPDBKafka领域Span及采样成本、六步诊断与SLO预算告警Runbook；补Histogram聚合PromQL/异步Scope与MDC/采样偏差/管道自监控/完整事故推演、4组完整面试追问及10题答案。",
       "checks": "全部正文逐节自足性和原主题人工核对；JSON实际解析及TraceSpanID长度检查、围栏配对/字段/查询口径检查；OTel/W3C/Prometheus/GoogleSRE一手核验；Python实际通过JSON与5项均值/基数/燃烧/成本计算；未编译Java或运行PromQL/真实服务Collector/JFR/数据库实验，正文明确边界。"
+    },
+    {
+      "path": "04-Java后端架构/06-Java架构面试题/01-设计一个高并发订单服务.md",
+      "status": "completed",
+      "completed_at": "2026-11-16T06:40:35.573Z",
+      "original_blob_sha": "c21802f22f70ae9ed0426860aaed5fd7ecdaa1fe",
+      "content_blob_sha": "8b23bcbe8008c5e82466d2d7fcea157c895e2a45",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖全部需求QPS商品一致性支付SLARegion超卖/四不变量、无状态MultiAZ/网关PG库存支付OutboxKafka履约通知、服务端价格快照/幂等、本地事务与预留Saga、缓存热点分区队列条件更新/有界池限流背压/索引分区归档、UnknownPending/重复消费/对账/推荐降级及全部观测；补完整容量/DDL/API/预留确认释放竞态、AuthorizeCapture区别和持久补偿/灾备预算/演进安全成本、完整面试回答追问及10题推理。",
+      "checks": "全部正文逐节自足性及原知识点人工核对；围栏/标题去重/DDL字段和状态支付语义/来源链接检查；PG17/Kafka4.1/Stripe官方核验；Python实际通过11项预留幂等/释放确认竞争终态与容量成本断言；未运行真实DB/Java/Kafka/支付沙箱/故障负载实验，正文明确验证边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
