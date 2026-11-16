@@ -638,10 +638,21 @@
       "completed_at": "2026-11-16T06:40:35.573Z",
       "original_blob_sha": "c21802f22f70ae9ed0426860aaed5fd7ecdaa1fe",
       "content_blob_sha": "8b23bcbe8008c5e82466d2d7fcea157c895e2a45",
-      "commit_sha": null,
+      "commit_sha": "f0ee6d052d0bfab5b038282fff3cedf08f41e9d7",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖全部需求QPS商品一致性支付SLARegion超卖/四不变量、无状态MultiAZ/网关PG库存支付OutboxKafka履约通知、服务端价格快照/幂等、本地事务与预留Saga、缓存热点分区队列条件更新/有界池限流背压/索引分区归档、UnknownPending/重复消费/对账/推荐降级及全部观测；补完整容量/DDL/API/预留确认释放竞态、AuthorizeCapture区别和持久补偿/灾备预算/演进安全成本、完整面试回答追问及10题推理。",
       "checks": "全部正文逐节自足性及原知识点人工核对；围栏/标题去重/DDL字段和状态支付语义/来源链接检查；PG17/Kafka4.1/Stripe官方核验；Python实际通过11项预留幂等/释放确认竞争终态与容量成本断言；未运行真实DB/Java/Kafka/支付沙箱/故障负载实验，正文明确验证边界。"
+    },
+    {
+      "path": "04-Java后端架构/06-Java架构面试题/02-如何排查Java服务CPU或内存异常.md",
+      "status": "completed",
+      "completed_at": "2026-11-16T13:07:56.326Z",
+      "original_blob_sha": "c9b3442c2bc5655090129fb52ace0573d5df1cb0",
+      "content_blob_sha": "1c2e0c3fd5102ca7e5fff4be5671719d37513691",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖SLO/LatencyErrorTrafficVersionRegion、CPU应用GC/节流HostNoise依赖BusyLoop、CPU Load线程GC请求/JFRAsyncFlame高CPU线程及业务序列化RegexSpinGCLogging/缓解根因、HeapLeakAllocationNativeDirectMetaspace栈OOMKill、HeapRSSGCBufferThread/DumpJFR/DominatorRetainer/CacheListenerThreadLocalClassLoaderQueue/NMT及安全停顿；补完整命令边界/虚拟线程nid/容器计费/原生盲区/两事故推演、4组完整面试追问及10题答案。",
+      "checks": "全部正文逐节自足性和原主题人工核对；围栏配对/标题去重/命令目标及失败风险一致性；JDK21/async-profiler/Linuxcgroupv2一手核验；Python实际通过8项CPU分母/nid/队列载荷与增长/内存余量断言；未运行真实JVM容器命令/Profiler/Dump或负载实验，正文明确边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
