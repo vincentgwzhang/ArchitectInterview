@@ -649,10 +649,21 @@
       "completed_at": "2026-11-16T13:07:56.326Z",
       "original_blob_sha": "c9b3442c2bc5655090129fb52ace0573d5df1cb0",
       "content_blob_sha": "1c2e0c3fd5102ca7e5fff4be5671719d37513691",
-      "commit_sha": null,
+      "commit_sha": "1950b9ccddfb5b32f37210383cb58ffde270c56c",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖SLO/LatencyErrorTrafficVersionRegion、CPU应用GC/节流HostNoise依赖BusyLoop、CPU Load线程GC请求/JFRAsyncFlame高CPU线程及业务序列化RegexSpinGCLogging/缓解根因、HeapLeakAllocationNativeDirectMetaspace栈OOMKill、HeapRSSGCBufferThread/DumpJFR/DominatorRetainer/CacheListenerThreadLocalClassLoaderQueue/NMT及安全停顿；补完整命令边界/虚拟线程nid/容器计费/原生盲区/两事故推演、4组完整面试追问及10题答案。",
       "checks": "全部正文逐节自足性和原主题人工核对；围栏配对/标题去重/命令目标及失败风险一致性；JDK21/async-profiler/Linuxcgroupv2一手核验；Python实际通过8项CPU分母/nid/队列载荷与增长/内存余量断言；未运行真实JVM容器命令/Profiler/Dump或负载实验，正文明确边界。"
+    },
+    {
+      "path": "04-Java后端架构/06-Java架构面试题/03-如何保证接口幂等与数据一致性.md",
+      "status": "completed",
+      "completed_at": "2026-11-16T18:40:16.511Z",
+      "original_blob_sha": "6cbf993c66c610baa66e5f2fc5f92257e6443a08",
+      "content_blob_sha": "9a3f593e91abfdc17502d1be6c95873110557c62",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖重复/并发/跨服务/消息语义、创建Key同事务业务UniqueFingerprintResponse、VersionETagIfMatch条件行数LostUpdate、本地ACIDOutbox消费去重自然幂等Saga补偿Reconciliation、TimeoutUnknown原Key查询、余额库存强控制通知分析最终一致陈旧SLO和全部观测；补完整DDL事务控制/崩溃窗口/长操作恢复/强ETag与412428/版本重试身份/保留灾备安全成本、完整面试回答追问及10题推理。",
+      "checks": "全部正文逐节自足性及原主题人工核对；围栏配对/标题去重/DDL字段与算法/HTTP条件和来源一致性；PG17/RFC9110及6585/Kafka4.1一手核验；Python实际通过7项回滚去重冲突/版本条件/SLO容量检查；未执行真实SQLHTTP/JavaKafka支付或并发故障实验，正文明确边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
