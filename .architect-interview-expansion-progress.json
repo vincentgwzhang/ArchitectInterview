@@ -616,10 +616,21 @@
       "completed_at": "2026-11-15T18:40:18.583Z",
       "original_blob_sha": "bcd9714f59deff5a48fbe2a35a003c17544e76a1",
       "content_blob_sha": "5598a68c1ac3d31eb7a71b32d01cc337c8a997ea",
-      "commit_sha": null,
+      "commit_sha": "8c0fe3686844dc9b46b031e14657d96f1d337973",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖幂等Key/Fingerprint/ProcessingResult与原子写保留并发、KafkaSQS至少一次/ProcessedTable本地事务/自然键版本Upsert、Saga退款库存释放非Rollback及失败重试审计人工、SourceOfTruth/Staleness/收敛冲突Reconciliation中间状态SLO、Unknown查询Callback；补完整DDL与快照并发边界/OutboxInbox/租约栅栏/增量缺口/补偿迟到/对账修复/崩溃矩阵、4组完整面试追问及10题推理。",
       "checks": "全部46标题逐节自足性与原主题人工核对；4围栏配对与DDL字段/算法/失败时序/来源检查；PG17/Kafka4.1/SQS/AWS一手核验；Python实际通过8项事务去重回滚/版本缺口/容量SLO断言；未运行真实数据库并发、KafkaSQS、支付及恢复实验，正文明确验证边界。"
+    },
+    {
+      "path": "04-Java后端架构/05-后端性能与可靠性/05-日志、指标、链路追踪与线上问题诊断.md",
+      "status": "completed",
+      "completed_at": "2026-11-16T00:42:17.965Z",
+      "original_blob_sha": "4b56545985e931b0dc701ccad7d28e2912581cf9",
+      "content_blob_sha": "5fd5dd57676f9792f258b904a2187b8584546c5d",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖MetricsLogsTraces与Trace/Business/Version/RegionAZ关联、JSON稳定事件错误码订单敏感数据与单边界堆栈、REDUSE及低基数、OTel上下文HTTPDBKafka领域Span及采样成本、六步诊断与SLO预算告警Runbook；补Histogram聚合PromQL/异步Scope与MDC/采样偏差/管道自监控/完整事故推演、4组完整面试追问及10题答案。",
+      "checks": "全部正文逐节自足性和原主题人工核对；JSON实际解析及TraceSpanID长度检查、围栏配对/字段/查询口径检查；OTel/W3C/Prometheus/GoogleSRE一手核验；Python实际通过JSON与5项均值/基数/燃烧/成本计算；未编译Java或运行PromQL/真实服务Collector/JFR/数据库实验，正文明确边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
