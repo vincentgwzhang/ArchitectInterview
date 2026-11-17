@@ -682,10 +682,21 @@
       "completed_at": "2026-11-17T06:43:24.596Z",
       "original_blob_sha": "878097822b67e8654647c827aa04162e9acd4925",
       "content_blob_sha": "9d24d0d24904a7d8fc54e77ff852aec7f49ae660",
-      "commit_sha": null,
+      "commit_sha": "53f9a4316b0052c5eb18b5f92bedaf5cb428b4ec",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖消费者版本分布/契约依赖、可选字段与默认值/单位/Nullability/未知枚举、能力协商、新契约选择与共享领域边界Adapter、Expand-and-Contract、弃用时间线指南SDK头部仪表盘、OpenAPI消费者契约旧客户端E2E回放Canary；补请求响应方向性、状态投影、跨版本事务幂等、缓存分区、并发回填与回滚、完整面试追问及10题推理答案。",
       "checks": "47个标题逐节自足性及原主题人工验收；围栏配对/标题去重/JSON解析；OpenAPI3.1.1与RFC9745/8594/9111一手核验；Python金额适配实际通过26项正常边界错误及投影检查。未运行真实Java/客户端/网关CDN/数据库事务及灰度故障测试，正文明确范围。"
+    },
+    {
+      "path": "01-架构师基础能力/02-系统设计方法/03-高层设计：上下文图、容器图、组件图与部署图.md",
+      "status": "completed",
+      "completed_at": "2026-11-17T18:42:16.373Z",
+      "original_blob_sha": "792b3b708b28ba5c139e405d0c72b397c6f3d988",
+      "content_blob_sha": "d67866a863b780ab7c1f67c1a020017c8108ff9c",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖多视图目的、C4四层/Container非Docker、Context边界用户外部依赖、Container职责技术协议存储、Component六边形端口依赖、DeploymentRegionAZ网络复制伸缩故障、DynamicSequence事务重试补偿窗口时延、PII加密鉴权信任审计、图例标题范围版本可访问性、DiagramAsCode工具评审CI白板、面试顺序和全部常见错误；补统一订单案例/Outbox先持久化恢复/容量连接预算/跨图一致性、完整面试追问与10题答案。",
+      "checks": "全部47标题逐节自足性与原主题人工验收；10围栏配对/标题去重/图例箭头及状态一致性检查；C4官方四类视图一手核验；Python实际通过4项正常/失AZ容量与连接预算断言。Mermaid未实际渲染，未部署云资源或运行JavaDBKafka和故障实验，正文明确验证边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
