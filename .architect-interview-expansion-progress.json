@@ -671,10 +671,21 @@
       "completed_at": "2026-11-17T00:37:04.811Z",
       "original_blob_sha": "ab1ee7fb2fd3620e1761e8c44e300c7f80f67abf",
       "content_blob_sha": "0a0c714536a73ef9cea7833aef64d1099114f9a0",
-      "commit_sha": null,
+      "commit_sha": "ba1fe8df6ecfc6ec5ee964ecc2230b676c693bfa",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖TraceCriticalPath慢依赖峰值/副作用边界授权同步、通知分析离事务Outbox双写、EventContractVersionOwnership最小数据、Consumer幂等RetryDLQ、UIPendingProcessing、LagAge失败对账、RetentionProducerLimitAutoScaleMaxRetryPoison隔离、Shadow比较FeatureFlag防双效果及全部代价；补分层异步选择/完整可靠任务API/排空算术/持久所有权与回滚交接/Java执行上下文/测试矩阵、完整面试追问及10题推理。",
       "checks": "逐节自足性和原主题人工验收；JSON实际解析/围栏配对/标题去重/字段与契约检查；JDK21/Spring6.2/Kafka4.1/RFC9110一手核验；Python实际通过11项稳定路由所有权/去重/容量时延检查；未运行真实JavaSpringKafka/DB/供应商或灰度故障实验，正文明确边界。"
+    },
+    {
+      "path": "04-Java后端架构/06-Java架构面试题/05-如何设计兼容旧客户端的API演进策略.md",
+      "status": "completed",
+      "completed_at": "2026-11-17T06:43:24.596Z",
+      "original_blob_sha": "878097822b67e8654647c827aa04162e9acd4925",
+      "content_blob_sha": "9d24d0d24904a7d8fc54e77ff852aec7f49ae660",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖消费者版本分布/契约依赖、可选字段与默认值/单位/Nullability/未知枚举、能力协商、新契约选择与共享领域边界Adapter、Expand-and-Contract、弃用时间线指南SDK头部仪表盘、OpenAPI消费者契约旧客户端E2E回放Canary；补请求响应方向性、状态投影、跨版本事务幂等、缓存分区、并发回填与回滚、完整面试追问及10题推理答案。",
+      "checks": "47个标题逐节自足性及原主题人工验收；围栏配对/标题去重/JSON解析；OpenAPI3.1.1与RFC9745/8594/9111一手核验；Python金额适配实际通过26项正常边界错误及投影检查。未运行真实Java/客户端/网关CDN/数据库事务及灰度故障测试，正文明确范围。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
