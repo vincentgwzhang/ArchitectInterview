@@ -660,10 +660,21 @@
       "completed_at": "2026-11-16T18:40:16.511Z",
       "original_blob_sha": "6cbf993c66c610baa66e5f2fc5f92257e6443a08",
       "content_blob_sha": "9a3f593e91abfdc17502d1be6c95873110557c62",
-      "commit_sha": null,
+      "commit_sha": "82f4b8412787e0150435dacd3dc5f88ced5b4917",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖重复/并发/跨服务/消息语义、创建Key同事务业务UniqueFingerprintResponse、VersionETagIfMatch条件行数LostUpdate、本地ACIDOutbox消费去重自然幂等Saga补偿Reconciliation、TimeoutUnknown原Key查询、余额库存强控制通知分析最终一致陈旧SLO和全部观测；补完整DDL事务控制/崩溃窗口/长操作恢复/强ETag与412428/版本重试身份/保留灾备安全成本、完整面试回答追问及10题推理。",
       "checks": "全部正文逐节自足性及原主题人工核对；围栏配对/标题去重/DDL字段与算法/HTTP条件和来源一致性；PG17/RFC9110及6585/Kafka4.1一手核验；Python实际通过7项回滚去重冲突/版本条件/SLO容量检查；未执行真实SQLHTTP/JavaKafka支付或并发故障实验，正文明确边界。"
+    },
+    {
+      "path": "04-Java后端架构/06-Java架构面试题/04-如何从同步阻塞系统演进到异步架构.md",
+      "status": "completed",
+      "completed_at": "2026-11-17T00:37:04.811Z",
+      "original_blob_sha": "ab1ee7fb2fd3620e1761e8c44e300c7f80f67abf",
+      "content_blob_sha": "0a0c714536a73ef9cea7833aef64d1099114f9a0",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖TraceCriticalPath慢依赖峰值/副作用边界授权同步、通知分析离事务Outbox双写、EventContractVersionOwnership最小数据、Consumer幂等RetryDLQ、UIPendingProcessing、LagAge失败对账、RetentionProducerLimitAutoScaleMaxRetryPoison隔离、Shadow比较FeatureFlag防双效果及全部代价；补分层异步选择/完整可靠任务API/排空算术/持久所有权与回滚交接/Java执行上下文/测试矩阵、完整面试追问及10题推理。",
+      "checks": "逐节自足性和原主题人工验收；JSON实际解析/围栏配对/标题去重/字段与契约检查；JDK21/Spring6.2/Kafka4.1/RFC9110一手核验；Python实际通过11项稳定路由所有权/去重/容量时延检查；未运行真实JavaSpringKafka/DB/供应商或灰度故障实验，正文明确边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
