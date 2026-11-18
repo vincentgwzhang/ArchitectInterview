@@ -693,10 +693,21 @@
       "completed_at": "2026-11-17T18:42:16.373Z",
       "original_blob_sha": "792b3b708b28ba5c139e405d0c72b397c6f3d988",
       "content_blob_sha": "d67866a863b780ab7c1f67c1a020017c8108ff9c",
-      "commit_sha": null,
+      "commit_sha": "3dffc0300a40c697576411bf68a153dd57b491e2",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖多视图目的、C4四层/Container非Docker、Context边界用户外部依赖、Container职责技术协议存储、Component六边形端口依赖、DeploymentRegionAZ网络复制伸缩故障、DynamicSequence事务重试补偿窗口时延、PII加密鉴权信任审计、图例标题范围版本可访问性、DiagramAsCode工具评审CI白板、面试顺序和全部常见错误；补统一订单案例/Outbox先持久化恢复/容量连接预算/跨图一致性、完整面试追问与10题答案。",
       "checks": "全部47标题逐节自足性与原主题人工验收；10围栏配对/标题去重/图例箭头及状态一致性检查；C4官方四类视图一手核验；Python实际通过4项正常/失AZ容量与连接预算断言。Mermaid未实际渲染，未部署云资源或运行JavaDBKafka和故障实验，正文明确验证边界。"
+    },
+    {
+      "path": "01-架构师基础能力/02-系统设计方法/04-API、数据模型、核心流程与异常流程设计.md",
+      "status": "completed",
+      "completed_at": "2026-11-18T00:41:58.461Z",
+      "original_blob_sha": "c06d26910012c821e78a10d1294ee04db3168676",
+      "content_blob_sha": "38379a46b651919f9cc1207ff20012a6570b5100",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖ActorUseCaseEntityInvariant状态、REST取消资源DTO错误模型幂等范围保留并发兼容、四类访问模式关系快照与多层约束Ownership、核心接单事务Outbox关键路径、ValidationTimeoutRetryPartialFailure补偿Duplicate乱序依赖降级、状态机权限副作用、TraceBusinessID指标审计安全及全部检查题；补完整DDL/候选事务冲突回滚/跨表CHECK边界/持久库存支付流程/取消发货竞争/增量缺口、4组完整面试追问及10题推理。",
+      "checks": "全部53标题逐节自足性与原主题人工验收；12围栏配对/标题去重/JSON实际解析/DDL及状态字段一致性；RFC9110/9457、PG17、Kafka4.1一手核验；Python实际验证8项重放冲突/基数/失败回滚/双顺序状态竞争/版本缺口/金额规则。未执行真实DDL或JavaJPA/HTTP/Kafka/支付及故障压测，正文明确范围。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",

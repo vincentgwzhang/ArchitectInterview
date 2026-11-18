@@ -1,317 +1,432 @@
 # 04. API、数据模型、核心流程与异常流程设计
 
-## 学习目标
+## 一、从领域和用例推导设计
 
-1. 从 Use Case 推导 API 和 Data Model。
-2. 设计清晰、兼容、幂等且可运营的 API Contract。
-3. 用核心流程验证组件协作和 Transaction Boundary。
-4. 系统化设计 Timeout、Retry、Duplicate 和 Partial Failure。
+API（Application Programming Interface，应用编程接口）、数据模型与流程必须共同兑现业务承诺。只写几个 REST 路径再画数据库表，会漏掉“请求重复是否扣两次钱”“发货与取消并发时谁赢”等真正影响正确性的问题。本章以**虚构订单系统**贯穿说明，不代表用户经历；技术片段是教学方案，并非已部署服务。
 
-## 一、从 Domain 开始
+领域（Domain）是业务规则所在的问题空间；用例（Use Case）是某个参与者希望完成的目标；实体（Entity）具有持续身份；不变量（Invariant）是在允许的状态下始终必须成立的约束。先明确顾客、客服、仓库分别能创建、取消、发货，再识别 Order、OrderItem、Payment、Shipment，最后决定接口、事务和存储。
 
-API 和数据库不是两个独立作业。它们都应服务于 Domain 和 Use Case。
+### 1.1 把口号改成可执行规则
 
-以订单系统为例，先识别：
+“订单金额正确”不够具体。本例约定 total = 商品行金额之和 + 税费 + 运费 - 折扣，金额使用币种对应的最小单位整数，税费与折扣按受版本控制的规则计算并保存快照。客户端只能提交商品、数量与报价标识，不能自行决定应付金额。不同币种不能直接相加，也不能假设所有币种都恰有两位小数。
 
-- Actor：Customer、Support Agent、Warehouse。
-- Use Case：Create Order、Cancel Order、Ship Order。
-- Entity：Order、OrderItem、Payment、Shipment。
-- Invariant：已发货订单不能取消；Order Total 必须等于 Item Total 加税费。
-- State Transition：Pending → Confirmed → Shipped → Delivered。
+“已发货不可取消”还应明确由哪个事实判断。若仓库已接收不可撤销的发货指令，订单页面暂未更新，不应继续承诺可取消。需要定义发货授权点及其持久状态，让取消和发货竞争同一个可序列化的业务决定。接口成功、领域成功和外部动作成功是不同事件，必须用状态区分。
 
-然后再决定 API Shape、Transaction Boundary 和 Storage Model。
+### 1.2 用例卡片与决策顺序
 
-## 二、API 设计
+| 用例 | 前置条件 | 成功承诺 | 主要失败与恢复 |
+| --- | --- | --- | --- |
+| 创建订单 | 身份有效，报价未过期，输入合法 | 订单身份与处理意图已持久化 | 重复请求返回原身份；提交未知按键查询 |
+| 确认订单 | 库存预留和支付授权已明确成功 | 可以进入履约阶段 | 外部未知先查询，明确拒绝进入补偿 |
+| 取消订单 | 调用者有权，尚未授予发货权 | 取消请求持久化，最终结果可查 | 与发货竞争；补偿失败保留处理中 |
+| 发货订单 | 已确认且没有取消占用 | 发货授权唯一且可恢复 | 重试同一发货身份，避免重复出库 |
 
-### 2.1 Resource 与行为
+先写成功的含义和失败后的状态，再选择同步或异步。小团队、单库业务可以先使用模块化单体与本地事务；独立团队或跨系统库存才需要分布式流程。不要为了采用 Saga 而主动拆掉本来能用单库事务保证的不变量。
 
-REST API 尽量围绕 Resource：
+## 二、API 契约：资源、输入、输出和错误
 
-```http
-POST   /orders
-GET    /orders/{orderId}
-GET    /orders?customerId=123&status=CONFIRMED
-POST   /orders/{orderId}/cancellations
-```
+### 2.1 Resource 与行为如何选择
 
-`POST /cancelOrder` 可以工作，但 `cancellations` 作为 Resource 更容易表达状态、权限和审计。
+资源（Resource）是可被标识和操作的业务对象；HTTP 方法说明操作语义。以下是本例契约，遵循 RFC 9110 的 HTTP 语义，但具体路径是教学选择：
 
-### 2.2 Request 与 Response
+~~~http
+POST /orders
+GET /orders/{orderId}
+GET /orders?status=CONFIRMED&limit=100&cursor=...
+POST /orders/{orderId}/cancellations
+GET /orders/{orderId}/cancellations/{cancellationId}
+~~~
 
-```json
+取消建模成 cancellation 资源，使请求人、原因、处理中与拒绝结果可独立查询和审计。POST /cancelOrder 也能实现业务，并非标准禁止动词；关键是是否需要持久操作身份，而不是机械追求名词。GET 查询不能承担扣款或发货等业务写入，避免预取、缓存和自动重试触发副作用。
+
+顾客列表默认根据已认证身份限定数据；客服跨用户查询需要单独权限。即使支持 customerId 参数，也不能把它当作可信授权来源。分页须定义稳定排序，例如 created_at、id 倒序，以及数据变化时能否重复或遗漏；游标是续读位置，不等于任意跳页编号。
+
+### 2.2 Request 与 Response 隔离内部模型
+
+~~~json
 {
-  "customerId": "cus_123",
+  "quoteId": "quote_123",
   "items": [
-    { "productId": "prd_42", "quantity": 2 }
+    {"productId": "prd_42", "quantity": 2}
   ],
   "currency": "EUR"
 }
-```
+~~~
 
-Response 不应直接暴露内部 JPA Entity。Public Contract 与内部模型的变化频率不同，应通过 DTO 隔离。
+服务器从身份上下文取得 customerId，校验报价属于该用户、币种一致且仍有效，并从可信报价快照计算金额。输入验证包括数量整数且为正、商品数上限、重复商品处理规则、字符串和请求体长度上限。应先拒绝便宜可判定的错误，再访问数据库和下游，降低攻击者放大成本。
 
-### 2.3 错误模型
+返回专用 DTO（Data Transfer Object，数据传输对象），不要直接序列化 JPA Entity。持久化实体可能暴露内部字段、双向关联或触发懒加载查询，数据库重构也不应自动改变公共契约。DTO 是显式允许输出的字段集合，不是简单换一个类名后把全部属性复制出来。
 
-统一错误结构：
+本例同步完成“创建订单记录”，而库存、支付后续推进，因此返回 201 Created，并用 Location 指向订单；状态明确是 PENDING，而非“已支付”：
 
-```json
+~~~json
 {
-  "code": "INSUFFICIENT_INVENTORY",
-  "message": "One or more items are unavailable",
-  "traceId": "7b9...",
-  "details": [
-    { "productId": "prd_42", "available": 1 }
-  ]
+  "orderId": "ord_123",
+  "status": "PENDING",
+  "currency": "EUR",
+  "totalMinor": 2490,
+  "version": 1
 }
-```
+~~~
 
-错误码应稳定并面向消费者，不能要求客户端解析自然语言。
+如果接口仅接收任务、尚未创建订单资源，可以设计为 202 Accepted 并返回任务查询位置。二者不能因为“内部用了异步”随意互换。客户端轮询应有退避和截止时间，超过等待预算后保留订单身份，让用户稍后查询，而不是重新创建。
 
-### 2.4 Idempotency
+### 2.3 错误模型要驱动正确动作
 
-创建订单和支付必须考虑 Client Retry：
+本例采用 RFC 9457 Problem Details，Content-Type 为 application/problem+json，在标准字段外添加稳定业务码和关联信息：
 
-```http
-POST /orders
-Idempotency-Key: 8f40c...
-```
+~~~json
+{
+  "type": "https://api.example.com/problems/insufficient-inventory",
+  "title": "Insufficient inventory",
+  "status": 409,
+  "detail": "One or more items are unavailable",
+  "code": "INSUFFICIENT_INVENTORY",
+  "traceId": "7b9-demo",
+  "details": [{"productId": "prd_42", "available": 1}]
+}
+~~~
 
-Server 保存 `Idempotency-Key + Operation + Response`。相同请求重复到达时返回第一次结果，而不是创建第二个订单。
+type 标识问题类型，title 是简短摘要，detail 解释本次发生的问题；扩展 code 用于客户端稳定分支。自然语言消息可能本地化，不能作为机器判断条件。available 仅在调用者有权看到库存信息时返回，避免通过错误接口泄露敏感商业数据。
 
-需要定义：
+格式无法解析可返回 400，未认证是 401，已认证但无权限是 403；资源不存在或需隐藏存在性时按统一政策返回 404。与当前业务状态冲突可以用 409，语义不符合处理要求可选择 422 并在契约中固定。5xx 表达服务器处理失败，不能全部包装成 200，否则网关、监控和重试会被误导。
 
-- Key Scope。
-- Retention Time。
-- 同 Key 不同 Payload 的处理。
-- In-progress Request 的并发行为。
+状态码不是自动重试许可。支付超时产生的 5xx 也可能已经发生业务效果；错误响应应说明是否可重试、是否先查询，并由业务操作的幂等语义保证安全。对外隐藏 SQL、堆栈、令牌，对内保留 cause 与 traceId。
 
-### 2.5 Versioning 与 Compatibility
+### 2.4 Idempotency：业务身份、并发和保留期
 
-优先使用向后兼容变化：
+幂等（Idempotency）意味着同一业务请求的重试不会新增业务效果。HTTP POST 默认没有这种保证，本例通过 Idempotency-Key 契约实现；该头在这里是明确约定的接口能力，不能假设任意服务器都会识别。
 
-- 增加 Optional Field。
-- 不改变已有 Field 语义。
-- Enum Consumer 对未知值保持容错。
-- 先让 Consumer 接受新旧格式，再改变 Producer。
+幂等空间使用 tenantId、已认证调用者、operation、key，避免不同用户互相命中结果。保存规范化请求指纹、订单标识与首次接单响应。同键同内容返回首次接单结果；订单后来变为 CONFIRMED 时通过 GET 取最新状态。同键不同内容返回冲突，不能悄悄复用或覆盖。
 
-Breaking Change 才需要 `/v2`、新 Media Type 或新 Endpoint。
+规范化指纹不能简单对原始 JSON 字符串散列，因为字段顺序或无意义空白不应改变身份。本例先验证输入，再按固定字段顺序序列化内部命令；items 是否排序取决于业务是否认为行顺序有意义。散列不替代权限检查，也不能把客户身份从指纹中丢掉。
 
-## 三、数据模型设计
+并发处理必须有数据库唯一约束。两个请求都先查不存在再插入，应用检查会同时通过；只有原子插入与唯一约束能选出一个胜者。订单、幂等记录和 Outbox 在同一事务提交，失败一起回滚；冲突者等待胜者结果后再读取。若捕获唯一冲突，注意事务已失败时需先回滚或使用合适保存点，不能继续在失败事务内查询。
 
-### 3.1 从 Access Pattern 开始
+保留期至少覆盖客户端重试、队列重放与业务补单窗口。到期删除后同键可能创建新单，应在契约中说明，并用商户外部订单号等长期自然唯一约束保护不可重复的业务。长期操作若先提交 PROCESSING 占位，必须另有租约、接管和恢复流程，不能让崩溃留下永久处理中。
 
-不要只从对象关系出发。需要列出主要 Query：
+### 2.5 版本与兼容性不是只加 Optional Field
 
-- 通过 `order_id` 读取订单。
-- 查询用户最近 100 个订单。
-- 查询待发货订单。
-- 按时间范围进行财务对账。
+新增请求可选字段需要保持缺省行为；新增响应字段需要真实旧客户端容忍未知字段。缺失与 null 必须分别定义，不能把“可选”理解为自动允许 null。改变币种默认值、金额单位、错误码或状态含义，即使类型没变也可能破坏兼容。
 
-这些 Query 决定 Primary Key、Index、Partition 和是否需要额外 Read Model。
+请求允许更多枚举值可能兼容旧输入，响应返回新枚举却可能让旧客户端崩溃。未知值兜底只对已经实现该逻辑的客户端有效，不能靠服务端更新修复旧安装包。先升级接收方以支持新旧格式，再开放发送方新行为；客户端发新字段前也要确保滚动中的旧服务端不会忽略它而伪成功。
 
-### 3.2 关系模型示例
+能证明兼容的扩展留在原契约；无法保留旧语义时使用显式 /v2、新媒体类型或新端点，并在边界适配到共享业务能力。不要为每个版本复制整套核心逻辑，也不要静默把未声明版本解释为最新版本。
 
-```text
-orders
-- id PK
-- customer_id
-- status
-- currency
-- total_amount
-- version
-- created_at
-- updated_at
+## 三、数据模型：从访问模式与不变量出发
 
-order_items
-- id PK
-- order_id FK
-- product_id
-- product_name_snapshot
-- unit_price_snapshot
-- quantity
-```
+### 3.1 Access Pattern 决定键、索引与读模型
 
-订单应保存购买时的商品名称和价格 Snapshot，不能在展示历史订单时依赖当前 Catalog 数据。
+访问模式（Access Pattern）是输入条件、排序、返回规模、频率和一致性要求的组合。通过 order_id 读取是单点访问；用户最近 100 单需要按用户和时间排序；待发货扫描按状态与更新时间处理；财务对账按时间及业务账务标识对齐。只列实体关联无法推导这些索引。
 
-### 3.3 数据不变量
+复合索引可从 tenant_id、customer_id、created_at、id 组合开始评估用户订单查询，待发货任务可评估状态与更新时间索引。是否真正有效取决于选择性、数据分布与执行计划，不能凭字段出现在 WHERE 就断言命中。索引增加写放大、磁盘和维护成本，不是越多越好。
 
-尽可能在多层保护关键 Invariant：
+分区（Partitioning）按某个键分割数据，有利于归档或局部访问，但跨分区查询与全局唯一约束需要额外审查。早期可以先单库加必要索引；大量报表或搜索再用额外读模型（Read Model）承接。读模型可重建且可能落后，不承担实时库存或扣款决策。
 
-- Domain Validation。
-- Database Constraint。
-- Unique Index。
-- Optimistic Lock。
-- Transaction。
+### 3.2 关系表与快照示例
 
-例如防止重复外部订单：
+以下 DDL 以 PostgreSQL 17 为说明基线，省略支付与发货明细，但订单、商品行与幂等表字段对应本章流程。EUR 金额为整数分；多币种扩展必须引入精度与范围规则。
 
-```sql
-UNIQUE (merchant_id, external_order_id)
-```
+~~~sql
+CREATE TABLE orders (
+    tenant_id text NOT NULL,
+    id text NOT NULL,
+    customer_id text NOT NULL,
+    status text NOT NULL CHECK (status IN
+      ('PENDING','CONFIRMED','CANCEL_REQUESTED','CANCELLED',
+       'SHIPPED','DELIVERED','REJECTED')),
+    currency text NOT NULL CHECK (currency = 'EUR'),
+    subtotal_minor bigint NOT NULL CHECK (subtotal_minor >= 0),
+    tax_minor bigint NOT NULL CHECK (tax_minor >= 0),
+    shipping_minor bigint NOT NULL CHECK (shipping_minor >= 0),
+    discount_minor bigint NOT NULL CHECK (discount_minor >= 0),
+    total_minor bigint NOT NULL CHECK (total_minor >= 0),
+    version bigint NOT NULL CHECK (version > 0),
+    created_at timestamptz NOT NULL,
+    updated_at timestamptz NOT NULL,
+    PRIMARY KEY (tenant_id, id),
+    CHECK (total_minor = subtotal_minor + tax_minor
+                          + shipping_minor - discount_minor)
+);
 
-Application Check 不能替代 Unique Constraint，因为并发请求之间存在 Race Condition。
+CREATE TABLE order_items (
+    tenant_id text NOT NULL,
+    order_id text NOT NULL,
+    line_no integer NOT NULL CHECK (line_no > 0),
+    product_id text NOT NULL,
+    product_name_snapshot text NOT NULL,
+    unit_price_minor bigint NOT NULL CHECK (unit_price_minor >= 0),
+    quantity integer NOT NULL CHECK (quantity > 0),
+    PRIMARY KEY (tenant_id, order_id, line_no),
+    FOREIGN KEY (tenant_id, order_id) REFERENCES orders (tenant_id, id)
+);
 
-### 3.4 Ownership
+CREATE TABLE idempotency_records (
+    tenant_id text NOT NULL,
+    caller_id text NOT NULL,
+    operation text NOT NULL,
+    key text NOT NULL,
+    fingerprint text NOT NULL,
+    order_id text NOT NULL,
+    response_json jsonb NOT NULL,
+    expires_at timestamptz NOT NULL,
+    PRIMARY KEY (tenant_id, caller_id, operation, key),
+    FOREIGN KEY (tenant_id, order_id) REFERENCES orders (tenant_id, id)
+);
 
-在 Microservice 中，Order Service 拥有 Order Data。其他 Service 不应直接写入它的表，而应通过 API 或 Event 交互。
+CREATE INDEX orders_by_customer
+    ON orders (tenant_id, customer_id, created_at DESC, id DESC);
+~~~
 
-可以发布必要的 Event，但不要把内部数据库 Schema 当作公共 Contract。
+购买时商品名与单价快照应随订单保存，历史订单不能用当前目录价重新计算。商品之后改名、下架，仍须解释当时交易。税率、折扣规则、报价版本也应有可追溯记录；快照包含个人信息时要兼顾保留与删除政策，不意味着永久复制一切。
 
-## 四、核心流程设计
+上述行级 CHECK 验证订单汇总公式，但**不能自动证明 subtotal 等于其他表所有商品行之和**。PostgreSQL CHECK 不适合假装实现跨行、跨表持续约束。应用应在同一事务按受控输入计算明细和汇总，限制写入口；必要时使用专门触发器或账务校验设计，并以对账检测绕过入口的数据。金额计算还需要上限，避免整数溢出，数据库拒绝异常不能代替输入预算。
 
-创建订单的简化流程：
+### 3.3 多层保护的不变量
 
-```text
-1. Client 发送 Create Order + Idempotency Key
-2. API 验证身份和输入
-3. Application Service 检查 Idempotency Record
-4. 获取商品价格并预留库存
-5. 创建 Order Aggregate
-6. Transaction 写入 Order + Outbox Event
-7. 返回 Order ID 和状态
-8. Outbox Publisher 发送 OrderCreated
-9. 下游异步处理通知和履约
-```
+领域校验给出清晰业务错误，数据库 NOT NULL、CHECK、外键保护存储结构，唯一约束保护并发身份，事务保证关联写入共同成功。乐观锁（Optimistic Lock）通过 version 条件发现并发修改，不能仅仅增加一列 version 而不在 UPDATE 条件使用。
 
-设计时应明确：
+例如商户外部订单号应在所属租户/商户范围唯一。若字段可空，需明确多个缺失值的含义；不能误认为普通可空唯一约束会自动禁止所有“无外部号”的重复业务。业务身份必须按真实业务定义，幂等键与自然唯一键负责不同时间尺度的重复风险。
 
-- 哪些步骤在 Critical Path？
-- 哪些可以异步？
-- Transaction 从哪里开始、在哪里结束？
-- 哪个系统是 Source of Truth？
-- 每一步失败时是什么状态？
+### 3.4 Ownership 与事件契约
 
-## 五、异常流程设计
+数据所有权（Ownership）表示哪个服务负责约束、写入与迁移。Order Service 拥有订单表，其他服务通过 API 或已定义事件请求或观察变化，不直接写表。共享表会让独立发布、权限和事务边界名存实亡。
 
-### 5.1 Validation Failure
+事件契约不是数据库行的完整复制。应明确 eventId、aggregateId、entityVersion、eventType、schemaVersion、发生时间及必要字段，过滤敏感数据。实体版本表示业务变化顺序，Schema 版本表示消息结构，两者不能混用。消费者需要哪些信息与谁负责修复丢失投影，也必须写进契约。
 
-输入无效应快速返回 4xx，不应进入下游处理。区分格式错误、业务规则错误和权限错误。
+## 四、核心流程：先持久化意图，再驱动外部效果
 
-### 5.2 Timeout
+### 4.1 创建订单的事务算法
 
-Timeout 并不表示下游没有执行。支付请求超时后可能已经成功扣款。
+本例选择已确认报价：提交前读取并验证报价，进入短事务后保存快照，不在数据库事务中等待远程库存或支付。若报价在提交时可能失效，需要约定有效期判断点，或者在权威报价系统中提供可验证承诺，不能把一次缓存读取当作永久锁价。
 
-处理策略：
+1. 验证身份、租户、输入、配额和报价，得到规范化命令与指纹。
+2. 开启本地事务；尝试按幂等空间占用业务身份。实现可用预先生成的订单 ID，插入顺序须与外键及事务方案一致。
+3. 对于首次请求，写订单 PENDING、商品快照、幂等响应与 Outbox 待处理事件，提交。
+4. 对于已完成的同键请求，验证指纹与调用者权限，返回保存的首次接单结果；不同指纹返回冲突。不得额外创建订单或发送消息。
+5. 提交成功才返回 201；连接在提交时中断则结果未知，客户端按原键查询或重试。
+6. 发布者读取 Outbox，发送事件后记录状态；流程执行者按订单身份预留库存、授权支付，推进订单并生成下一步持久任务。
 
-- 使用 Idempotency Key。
-- 查询操作状态。
-- 进入 `PAYMENT_PENDING` 而不是立即判定失败。
-- 通过 Webhook/Event 最终确认。
+实现第 2 步不能违背前面 DDL 的立即外键：可先在同一事务插入候选订单，再插入幂等记录；若唯一键冲突则回滚**整个候选事务**，重新读取原记录，所以候选订单不会遗留。也可采用不同的占位表方案，但必须重审外键和恢复语义，不能把伪代码顺序直接当成可执行 SQL。
 
-### 5.3 Retry
+Outbox 是业务事务中写入的待发布记录，保证订单提交与“以后要发送什么”共同持久化。发布后标记前崩溃仍会重复，消费者必须幂等。发布者通常不应长时间持有数据库锁等消息确认；通过短批次领取、租约与可恢复状态组织任务，失败可重新领取。
 
-Retry 只适用于 Transient Failure，并应具备：
+### 4.2 Critical Path 与权威源
 
-- Exponential Backoff。
-- Jitter。
-- Maximum Attempts。
-- Overall Deadline。
-- Idempotency。
-- Retry Budget。
+关键路径（Critical Path）是用户必须等待的链路。本例接单等待认证、报价验证和本地提交，通知、分析与履约不在接单响应路径。库存和支付是否异步取决于产品承诺：如果页面要求当场确定可购买，就需要同步等待或保持处理页面，而不是把异步任务接收伪装成交易完成。
 
-对 Validation Error 或明确的业务拒绝进行 Retry 没有意义。
+订单状态由订单库权威保存，库存由库存系统权威保存，授权/扣款事实由支付系统及对账确认。不存在一个本地数据库能天然覆盖所有外部事实的“全局真相”。订单保存这些事实的可追踪引用及流程状态，通过查询、回调与对账收敛。
 
-### 5.4 Partial Failure
+### 4.3 库存和支付的持久流程
 
-如果库存已预留但支付失败，需要释放库存。可以通过 Saga Compensation 完成。
+Saga 是跨多个本地事务推进业务并在必要时补偿的流程。执行者在调用外部系统前记录稳定操作身份；调用后把明确结果和下一步意图持久化。崩溃恢复读取状态继续，不依赖进程内局部变量。远程 API 必须支持按身份幂等或查询，否则要明确人工处理与重复效果风险。
 
-必须考虑补偿也失败：
+库存预留成功后才授权支付，支付授权成功且其他条件满足后确认订单。授权不等于已扣款；何时 Capture（实际扣款）应按履约政策另设步骤。预留有到期时间，流程推进前检查是否仍有效，不能在预留过期后仅凭旧记录确认订单。
 
-- 持久化 Saga State。
-- 重试补偿。
-- Dead Letter Queue。
-- Alert 和人工处理入口。
-- 定期 Reconciliation。
+| 故障点 | 已知事实 | 恢复动作 |
+| --- | --- | --- |
+| 事务提交前崩溃 | 无已提交订单 | 原键重试可重新创建 |
+| 提交后响应丢失 | 订单与任务已存在 | 原键返回原订单身份 |
+| 发消息后未标记 | 消息可能已送达 | 允许重发，消费者去重 |
+| 库存请求超时 | 是否预留未知 | 查询同一预留身份 |
+| 支付成功但未记账 | 外部可能已授权/扣款 | 查询与回调确认，不重新生成业务身份 |
+| 补偿失败 | 外部资源仍可能占用 | 持久重试、告警、对账与人工处理 |
+
+## 五、异常流程：按事实和恢复能力分类
+
+### 5.1 Validation Failure 与权限失败
+
+格式错误、领域拒绝、身份错误分别处理。quantity 为负是输入错误；库存不足是当前业务条件拒绝；读取别人订单是权限问题。前两者不是靠重试原请求就会自动变好的暂时故障，后一种更不能为了成功率降级绕过授权。
+
+对所有数组长度、金额上限和字符串大小做预算，防止合法格式的大请求耗尽资源。错误信息同时考虑可行动性和信息泄露；普通顾客不应从详细错误探知其他租户商品、订单或账户状态。
+
+### 5.2 Timeout 是未知结果，不是失败事实
+
+Timeout 是调用者的等待预算耗尽。网络可能在对方提交之后断开，所以支付超时后直接转 FAILED 并退款或重新扣款都可能错误。将支付子流程标为 PAYMENT_PENDING 或 RESULT_UNKNOWN，保存供应商请求身份，先查询，再结合验签回调和对账确定结果。
+
+回调可能早于同步响应，也可能重复或迟到。处理时验证来源、商户、金额、币种和操作身份，用条件更新推进，不让旧失败响应覆盖已确认成功。最终仍不确定时保持可见的处理中与人工入口，不能无限安静重试。
+
+### 5.3 Retry 要控制总量与截止时间
+
+仅对可恢复的暂时故障重试，例如明确的短期不可用，并确保操作幂等。指数退避（Exponential Backoff）逐次增加等待，抖动（Jitter）把重试时间打散，防止大量客户端同时冲击恢复中的依赖。最大次数、总截止时间和重试预算同时限制放大。
+
+若三层各尝试三次，最底层最多可能收到 27 次请求。通常由最了解业务身份和剩余预算的一层负责重试，其余层尽量不重复。超过预算进入可查询的待恢复状态或明确失败，不能无限排队耗尽线程与连接。
+
+业务拒绝、非法输入和权限错误一般不重试；限流响应按契约等待，并受总截止时间限制。网络结果未知时首先解决“是否已执行”，不能把所有 5xx 都当作无副作用的瞬时错误。
+
+### 5.4 Partial Failure 与补偿失败
+
+部分失败（Partial Failure）是一些步骤成功而其他步骤失败。库存已预留、支付明确拒绝，应释放预留；已实际扣款后取消则可能需要退款，不是撤销授权。补偿是新的业务动作，必须有自己的身份、状态和可重试语义，不能当作数据库 rollback。
+
+持久化流程状态、补偿任务与最近错误；反复失败进入告警和人工工作台。死信队列（Dead Letter Queue）存放无法自动处理的消息，但它不是业务恢复完成的标志。要有负责人、查看原因、修复、受控重放和对账入口，防止“丢进 DLQ 就算处理”。
+
+迟到成功尤其危险：订单已进入取消流程，支付授权结果此时到达，不应重新确认订单，而应生成撤销或退款任务。状态机要包含“目标已取消但外部效果待清理”的事实，只有清理达到业务终态才对外宣称最终取消成功。
 
 ### 5.5 Duplicate 与 Out-of-order Event
 
-消费者应假设 Event 可能重复或乱序：
+事件去重用 eventId 防止同一消息重复；自然业务键防止同一业务效果被不同消息 ID 触发两次。去重记录、业务写入和本地后续事件在同一事务提交，提交后再确认消息进度。否则先标记已处理再写业务，崩溃会丢效果；先写业务后单独标记，则会重复。
 
-- 使用 Event ID 去重。
-- 业务操作使用自然 Idempotency Key。
-- 保存 Entity Version。
-- 忽略旧版本 Event。
-- 同一 Aggregate 使用相同 Partition Key 保序。
+乱序策略取决于事件含义。完整状态快照可以在验证语义后只接受更高实体版本；增量事件不能直接跳过缺口，否则先到的“扣 10”可能让后到的“加 20”被忽略。应要求 nextVersion = lastVersion + 1，缺口暂存并补拉或重放，限制缓冲容量和等待时间。
 
-### 5.6 Dependency Unavailable
+Kafka 同一分区的日志有顺序，但不同分区没有全局顺序；同聚合稳定分区键有助于保序，却不能修复生产者生成顺序错误、跨 Topic 或消费者并行处理造成的业务乱序。Kafka 事务能力也不自动把外部数据库或付款调用纳入同一原子事务，边界必须明确。
 
-根据业务重要性选择：
+### 5.6 Dependency Unavailable 的降级边界
 
-- Fail Fast。
-- 返回 Cache/Stale Data。
-- Queue for later。
-- Disable optional feature。
-- Manual fallback。
+推荐服务失败可隐藏推荐，商品描述可在注明陈旧范围后读缓存，通知可排队后投递。缓存与延迟队列都要有容量、过期和恢复策略；不能把无限积压当成可靠降级。
 
-例如 Recommendation Service 故障不应阻断 Checkout，可以隐藏推荐区域；Payment 故障则必须停止订单确认。
+支付不可用时可以接受明确标为 PENDING 的订单意图，但不能确认支付完成；如果业务不允许挂单，就快速拒绝新接单。人工兜底适合可审计、规模有限的操作，不能绕过资金授权或把无人值守邮箱当作恢复方案。选择 Fail Fast、陈旧读取或排队，依据正确性与可接受延迟，而非统一模板。
 
-## 六、状态机
+## 六、显式状态机与并发命令
 
-复杂流程应显式建模状态和合法迁移：
+### 6.1 合法迁移和发货竞争
 
-```text
-PENDING -> CONFIRMED -> SHIPPED -> DELIVERED
-   |            |
-   v            v
-CANCELLED    CANCEL_REQUESTED
-```
+状态机把当前事实、允许动作和后续效果放在一起。订单主状态保持简洁，支付子状态与补偿任务单独记录，避免用一个枚举表达所有组合。本例定义：
 
-每次 Command 应检查：
+| 当前状态 | 命令或事实 | 新状态 | 必须可靠关联的效果 |
+| --- | --- | --- | --- |
+| PENDING | 库存与支付明确满足 | CONFIRMED | 生成履约可处理事件 |
+| PENDING/CONFIRMED | 取消获准 | CANCEL_REQUESTED | 释放预留、撤销授权或退款 |
+| CANCEL_REQUESTED | 补偿达到终态 | CANCELLED | 记录最终取消结果 |
+| CONFIRMED | 发货权被原子授予 | SHIPPED | 生成唯一发货指令 |
+| SHIPPED | 配送完成确认 | DELIVERED | 保存配送证据 |
+| PENDING | 明确业务拒绝 | REJECTED | 已有预留/授权仍须清理 |
 
-- 当前状态是否允许操作。
-- Caller 是否有权限。
-- 是否已经处理过。
-- 状态迁移和 Side Effect 是否原子或可靠关联。
+本例 SHIPPED 表示已不可撤销地授予发货权，而不保证包裹已物理离仓；若产品需要精确展示，应改名为 DISPATCHING 并增加物理出库状态。重要的是定义业务线性化点，即竞争操作以哪个原子决定作为先后依据，避免单词造成假承诺。
 
-显式状态机比散落的 `if` 更容易测试、监控和恢复。
+取消和发货都对同一个订单版本执行条件更新，只有一个胜者。同事务写对应 Outbox，外部仓库只接受已授予的发货指令，不能绕过订单服务先出库后再同步状态。跨团队若不能遵守这个协议，就不能单靠本地 SQL 保证“已取消绝不发货”。
 
-## 七、Observability by Design
+### 6.2 乐观锁示例与冲突处理
 
-设计 API 与流程时同时定义：
+~~~sql
+UPDATE orders
+SET status = 'CANCEL_REQUESTED',
+    version = version + 1,
+    updated_at = CURRENT_TIMESTAMP
+WHERE tenant_id = :tenant
+  AND id = :order_id
+  AND version = :expected_version
+  AND status IN ('PENDING', 'CONFIRMED');
+~~~
 
-- Correlation ID / Trace ID。
-- Business ID，如 `orderId`、`paymentId`。
-- Structured Log。
-- Latency、Error、Retry、Queue Lag Metrics。
-- Audit Event。
-- 状态停留时间告警。
+受影响行数为 1 才表示取得状态迁移权，随后在同一事务写补偿任务；为 0 则重读判断是版本陈旧、状态冲突还是资源不存在。这里是命名参数教学 SQL，需由数据库驱动或框架绑定，不能把它原样当 psql 脚本运行。
 
-例如监控 `PAYMENT_PENDING > 10 minutes`，可以发现第三方回调丢失或处理失败。
+不能捕获冲突后无条件覆盖。若新状态已经 SHIPPED，应拒绝取消；若已经 CANCEL_REQUESTED，可按取消操作身份返回现有请求。HTTP 可用 ETag 与 If-Match 表达客户端版本条件，前置条件不成立用 412；没有采用条件请求时可用契约定义的 409 表达业务冲突，不能把两类错误混为一个不解释的“失败”。
 
-## 八、Security by Design
+## 七、可观测性与安全在设计时完成
 
-- Authentication 与 Authorization 分开考虑。
-- 验证 Resource Ownership，避免 IDOR。
-- 不在 Log 中输出 Token、Card 或 PII。
-- 对敏感 Field 加密或 Tokenization。
-- 对高风险操作保留 Audit Trail。
-- API Gateway 限流不能替代业务级权限。
+### 7.1 关联标识、指标和停留时间
 
-## 九、面试检查清单
+traceId 关联一次调用链，orderId、paymentId 关联跨重试、回调和后台恢复的业务过程，二者不能互相替代。结构化日志记录事件名、业务身份、旧新状态、结果码及版本，避免每一层重复打印同一堆栈。
 
-1. API 是否围绕核心 Use Case？
-2. Error Model 是否稳定？
-3. 创建和支付是否 Idempotent？
-4. Data Model 是否支持主要 Access Pattern？
-5. Source of Truth 和 Ownership 是否明确？
-6. Transaction Boundary 在哪里？
-7. Timeout 后如何判断最终状态？
-8. Retry 是否安全并有上限？
-9. Partial Failure 如何补偿？
-10. 如何监控卡住的流程？
+指标包括接单延迟、业务拒绝与系统错误、重试放大、队列积压及最老任务年龄。以“支付待确认超过业务目标”告警比只看平均 CPU 更能发现回调丢失。原文 PAYMENT_PENDING > 10 minutes 是教学阈值，真实值应来自供应商时限与业务目标，并配套查询、回调重放和对账的操作手册。
 
-## 十、自测题
+用户和订单 ID 不直接做高基数指标标签，否则时间序列与费用可能失控；放在受控日志与追踪中查询。监控还要检查恢复系统自身是否运行，例如对账最后成功时间、DLQ 最老消息年龄与扫描检查点。
 
-1. 为什么 Public API 不应该直接返回 JPA Entity？
-2. Client Timeout 为什么不能直接理解为操作失败？
-3. Application Check 为什么不能替代数据库 Unique Constraint？
-4. 哪些 Side Effect 适合移出同步 Critical Path？
-5. 如何处理重复且乱序的 Kafka Event？
+### 7.2 Authentication、Authorization 与数据保护
 
-## 十一、总结
+认证确认是谁，授权决定能做什么。防止 IDOR（Insecure Direct Object Reference，不安全的直接对象引用）的关键不是让 orderId 难猜，而是每次读取或修改都验证租户、归属和操作权限；后台任务也使用最小权限服务身份。
 
-- API、Data Model 和流程都应从 Use Case 与 Invariant 推导。
-- API Contract 必须考虑错误、兼容性、Idempotency 和权限。
-- Data Model 应围绕 Access Pattern、Ownership 与一致性设计。
-- 核心流程需要明确 Critical Path、Transaction 和 Source of Truth。
-- 异常流程不是附录；Timeout、Retry、Partial Failure 和恢复是分布式设计的主体。
+不要从客户端 DTO 自动绑定 status、customerId、total 或 admin 字段到实体，这类过度赋值会使调用者绕过规则。回调验证签名后仍需核对金额和订单归属，签名只能证明来源与完整性，不能证明业务条件已满足。
+
+敏感字段按风险采用加密或 Tokenization（令牌化，以受控替代标识引用敏感值），密钥访问与轮换单独管理。日志不写 Token、完整卡信息或 PII，审计保留谁授权取消、谁人工修复等高风险操作。网关限流只能控制入口流量，不能替代资源级权限、租户配额和业务反滥用。
+
+## 八、验证、演进与工程检查
+
+### 8.1 用故障矩阵验证设计
+
+测试围绕不变量和故障点，而非仅验证方法调用次数。至少验证同键并发只产生一个订单、同键不同参数冲突、事务任一步失败全部回滚、支付回调早于响应、消息重复及版本缺口、取消发货竞争、补偿失败重放和权限跨租户拒绝。
+
+单元测试检查状态机与规范化，真实数据库集成检查唯一约束和事务，契约测试检查客户端依赖，端到端测试检查用户能查询最终状态。网络断开和进程崩溃注入专门验证提交结果未知与恢复。内存 Map 的成功不能证明数据库隔离或供应商行为。
+
+### 8.2 性能、成本与演进取舍
+
+短事务减少锁与连接占用，但异步流程增加状态表、队列、告警和运营成本。同步等待更直观，却把外部延迟放到用户关键路径。先按业务承诺选择，再以连接池、队列字节容量和重试预算限制资源，不通过无限线程或无限队列掩盖瓶颈。
+
+模型演进使用先扩展后收缩：先让服务读取新旧数据，补齐历史数据并检查，再切写和移除旧字段。回滚版本必须能理解已产生的新数据；不能只恢复旧代码就假定迁移已撤销。读模型、事件契约与数据库 Schema 独立管理版本，降低跨团队同步发布要求。
+
+### 8.3 本章实际验证范围
+
+本章用 Python 状态模型验证幂等重放与冲突、失败回滚、取消与发货竞争、增量事件缺口及金额公式；JSON 示例实际解析，围栏与标题已检查。该模型不是数据库、Kafka 或支付供应商的实现。DDL 和参数 SQL 未在真实 PostgreSQL 执行，未运行 Java/JPA、HTTP、消息与支付沙箱或故障压测，生产落地仍需上述集成和恢复验证。
+
+## 九、完整面试回答与追问
+
+### 9.1 主问题：怎样把 API、表和流程一起设计？
+
+**回答示例：**“我从参与者、用例和不变量出发，先定义创建成功是持久接单还是支付完成。接口用专用 DTO，身份来自认证上下文，错误有稳定机器码，创建用租户和调用者范围的幂等键。数据按订单查询、用户历史、履约扫描和对账访问模式建立必要索引，保存购买快照，订单库负责订单事实。接单事务原子保存订单、幂等响应和 Outbox，远程库存与支付用持久业务身份推进；超时是未知结果，先查询，明确失败后补偿。取消与发货通过版本条件竞争，外部指令只能由胜出的持久任务发出。最后检查重复、乱序、补偿失败、越权和卡住状态都有恢复与告警。”
+
+推理顺序是业务承诺决定接口返回和状态，访问模式决定存储，跨系统边界决定恢复机制。不是先选消息中间件再强迫业务适应。
+
+**追问：为何不把所有调用放在数据库事务中？** 本地事务不能撤销已经完成的供应商 HTTP 调用，长时间等待还会持锁占连接。应先持久化意图，再通过幂等调用、查询和补偿关联外部效果；只有同一事务资源内的写入才可直接依赖本地原子性。
+
+### 9.2 追问：幂等表是不是只需要 key 和 response？
+
+**回答：**“还需要身份范围、操作类型、规范化指纹、业务身份和保留策略，并明确处理中并发行为。同键不同金额不能返回旧成功，跨租户不能共享结果。订单与幂等结果要共同提交，否则会有去重记录成功而业务不存在的窗口。”
+
+**再追问：过期以后怎么办？** 按契约明确重复保护窗口；长期不可重复业务使用自然唯一键或保留轻量身份记录，并审查重放和补单流程，不能认为清理缓存后仍永久幂等。
+
+### 9.3 追问：支付超时且随后用户取消呢？
+
+**回答：**“保留支付结果未知并记录取消目标，不立即假定没扣款。按原支付身份查询，验签处理回调；迟到成功时进入撤销授权或退款，不把已取消目标重新确认为待发货。补偿任务本身持久且幂等，失败告警并对账。”
+
+**再追问：一直查不到？** 限制自动重试与查询预算，保留用户可见状态和人工处理入口。供应商无可靠查询时必须承认无法自动消除不确定性，不能制造一个本地 FAILED 来掩盖资金风险。
+
+### 9.4 追问：Kafka 保序为什么还要实体版本？
+
+**回答：**“日志顺序局限于分区，业务可能跨 Topic、多个生产者或并行处理。实体版本帮助检测旧数据和缺口。快照可接受更新版本，增量必须补齐缺失序列；eventId 去重与业务键幂等分别防止消息重复和重复效果。”
+
+**再追问：使用 exactly-once 呢？** 必须明确它覆盖的资源边界。Kafka 内部事务处理语义不能自动保证外部付款或任意数据库写入恰好一次，外部仍要幂等身份和事务或恢复协议。
+
+## 十、扫雷自测与完整答案
+
+### 10.1 为什么 Public API 不直接返回 JPA Entity？
+
+公共契约与存储模型的职责和变化速度不同。直接暴露可能泄露字段、产生循环序列化和懒加载查询，并把数据库重构变成客户端破坏。专用 DTO 显式选择字段，再独立验证契约与权限，比依赖默认序列化更可控。
+
+### 10.2 Client Timeout 为什么不等于失败？
+
+响应可能在对方完成提交后丢失。正确处理是保留业务身份和未知状态，原键重试或查询，再由回调与对账收敛。换新键重试会把“再问一次”变成“再做一次”，增加重复效果。
+
+### 10.3 Application Check 为什么不能替代唯一约束？
+
+并发请求都可能在另一方提交前看到“不存在”。唯一约束把竞争放到数据库原子决定处，失败者回滚候选写入并读取胜者结果。应用检查用于友好提示，不能作为最终并发正确性保障。
+
+### 10.4 哪些副作用适合移出关键路径？
+
+通知、分析和允许延迟的投影通常适合，因为失败不应撤销已接单事实。库存与支付取决于成功承诺；可以异步接单，但不能提前展示支付确认。移出后仍需持久任务、容量限制和恢复，不能使用进程内线程即发即忘。
+
+### 10.5 如何处理重复且乱序的事件？
+
+重复消息以 eventId 去重，重复业务效果再以自然业务键保护，两者与业务写入同事务。版本用于发现乱序：快照可接受较新状态，增量先补缺口再处理。稳定分区键有帮助，但不能替代整个生产消费路径的顺序设计。
+
+### 10.6 CHECK 已有金额公式，是否证明商品行正确？
+
+没有。订单行 CHECK 只验证本行公式，不证明 subtotal 等于另一张表的所有明细。需在同一受控事务计算并写入快照，限制写入口，必要时设计触发器并做对账。把跨表关系写在文档里不等于数据库自动保护。
+
+### 10.7 取消与发货同时发生，能各自先查状态再更新吗？
+
+不能，两边可能都读到 CONFIRMED 并各自执行外部动作。应竞争同一版本和状态条件，只有一个取得迁移权，并与对应任务原子提交。仓库必须遵守发货授权协议，否则本地胜负无法约束外部出库。
+
+### 10.8 同键不同 JSON 字段顺序应算冲突吗？
+
+若业务含义相同通常不应。先验证并规范化为内部命令，再以确定性序列化计算指纹。数组顺序是否可忽略由业务决定，不能为了指纹方便随意排序改变意义；金额与身份也必须纳入。
+
+### 10.9 补偿消息进 DLQ 就能标记取消完成吗？
+
+不能。DLQ 仅隔离无法自动处理的任务，库存或资金效果仍可能存在。保留取消处理中，告警、修复和受控重放，直到达到约定补偿终态或明确人工决策，才能报告最终结果。
+
+### 10.10 网关认证通过，为什么还可能越权？
+
+认证只确认调用者身份，不能证明其拥有订单。每个接口和后台操作仍需租户、归属及动作权限检查，避免 IDOR 和过度赋值。限流和复杂 ID 都不能替代资源授权。
+
+## 十一、速记与一手来源
+
+速记链路：**用例与不变量 → 成功承诺 → DTO/错误/幂等契约 → 访问模式与约束 → 短本地事务 → 外部持久流程 → 状态竞争 → 对账、告警与权限。**
+
+面试时逐步追问“此处崩溃留下什么事实、重试沿用哪个身份、由谁恢复”，比把异常列为附录更能证明方案完整。任何图表、代码和接口都必须对同一个成功承诺负责。
+
+版本范围：HTTP 语义按 RFC 9110（2022），错误格式按 RFC 9457（2023），DDL 说明按 PostgreSQL 17，消息边界按 Kafka 4.1 文档核验；具体框架、驱动和供应商仍需适配测试。来源用于核验与可选追溯，正文已解释必要机制：
+
+- [RFC 9110：HTTP Semantics](https://www.rfc-editor.org/rfc/rfc9110.html)
+- [RFC 9457：Problem Details for HTTP APIs](https://www.rfc-editor.org/rfc/rfc9457.html)
+- [PostgreSQL 17：Constraints](https://www.postgresql.org/docs/17/ddl-constraints.html)
+- [Apache Kafka 4.1：Design](https://kafka.apache.org/41/design/design/)
