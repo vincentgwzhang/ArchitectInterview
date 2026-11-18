@@ -726,10 +726,21 @@
       "completed_at": "2026-11-18T12:36:33.483Z",
       "original_blob_sha": "c73bd6729285062d76ba9a79c23ccfc747ae2252",
       "content_blob_sha": "c3b7eaf3167981a8626cda24cf1b456d84fcb310",
-      "commit_sha": null,
+      "commit_sha": "c86424d86f44f5bbc6330dadc9b2271c95af595f",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖SLISLOSLA错误预算、UserJourney非Uptime/订单支付事件时限、Availability4xx依赖维护探针部分成功口径、尾延迟联合成功、RollingCalendar窗口、预算政策ProductEngineeringSRE、BurnRate多窗口、依赖组合与分配、设计流程常见错误面试自测；补异步到期分母/重试统计单位/缺数与加权/Histogram聚合/预算恢复门槛/燃烧份额与流量假设/PromQL记录组合、4组完整面试追问及10题推理。",
       "checks": "全部52标题逐节自足性和原主题人工验收；6围栏配对/标题去重/目标窗口阈值一致性；GoogleSREWorkbook及Prometheus一手核验；Python实际通过12项SLI预算加权燃烧依赖计算。PromQL未在真实Prometheus执行，未运行埋点采集或告警演练，正文明确边界。"
+    },
+    {
+      "path": "01-架构师基础能力/03-非功能性需求/02-延迟、吞吐量、并发性与容量规划.md",
+      "status": "completed",
+      "completed_at": "2026-11-18T18:39:58.556Z",
+      "original_blob_sha": "548cfa0dcdcaf0c6689219aec44e5679151850c7",
+      "content_blob_sha": "aa05ea2a2f87d7345f49e0a98b4c71f5235c1603",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖LatencyThroughputConcurrencyUtilization、DNS/TLS网络队列应用DB依赖序列化关键路径、TailFanoutTimeoutHedgeCacheCoalescing隔离/CoordinatedOmission、全部瓶颈、Little定律与级联、Saturation背压卸载、三并发模型、八项容量因子与19500算例、AutoScale目标预热上下限及下游、六测试类型/优化顺序/全部误区；补单位边界成功吞吐/离散AZ放置/Headroom语义/发布连接预算/工具丢迭代/完整排障与面试追问、10题推理。",
+      "checks": "全部51标题逐节自足性与原知识点人工验收；围栏配对/标题去重/单位及公式一致性；OracleJava21/k6/GoogleSRE/AWSAutoScaling一手核验；Python实际通过15项并发Fanout队列容量连接算术。未执行真实JavaReactive/DB压测或云扩容故障实验，正文明确边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
