@@ -737,10 +737,21 @@
       "completed_at": "2026-11-18T18:39:58.556Z",
       "original_blob_sha": "548cfa0dcdcaf0c6689219aec44e5679151850c7",
       "content_blob_sha": "aa05ea2a2f87d7345f49e0a98b4c71f5235c1603",
-      "commit_sha": null,
+      "commit_sha": "aecbd7116aff3023b933dceb8442e2c3063e3e5c",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖LatencyThroughputConcurrencyUtilization、DNS/TLS网络队列应用DB依赖序列化关键路径、TailFanoutTimeoutHedgeCacheCoalescing隔离/CoordinatedOmission、全部瓶颈、Little定律与级联、Saturation背压卸载、三并发模型、八项容量因子与19500算例、AutoScale目标预热上下限及下游、六测试类型/优化顺序/全部误区；补单位边界成功吞吐/离散AZ放置/Headroom语义/发布连接预算/工具丢迭代/完整排障与面试追问、10题推理。",
       "checks": "全部51标题逐节自足性与原知识点人工验收；围栏配对/标题去重/单位及公式一致性；OracleJava21/k6/GoogleSRE/AWSAutoScaling一手核验；Python实际通过15项并发Fanout队列容量连接算术。未执行真实JavaReactive/DB压测或云扩容故障实验，正文明确边界。"
+    },
+    {
+      "path": "01-架构师基础能力/03-非功能性需求/03-可用性、容错、灾难恢复、RTO与RPO.md",
+      "status": "completed",
+      "completed_at": "2026-11-19T00:40:08.691Z",
+      "original_blob_sha": "12836b8de11c91ce26d0553ad39c9208993f0ced",
+      "content_blob_sha": "1db4b64cfbcbcc6237dd9acba417f6facbfcccdd",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖HA容错DRResilience、MTBFMTTDMTTAMTTRRTO/RPO/BIA、全部故障域与共同故障、应用无状态跨AZ健康检查伸缩探针停机发布弹性、数据同步异步选主脑裂备份PITR连接、四DR策略/全部备份维度3-2-1、宣布隔离DNS追平重连回切、全部降级/八项演练/误区/框架与五原题；补恢复预算下界/权限密钥控制面独立/日志链逻辑损坏安全恢复/唯一写权世代/支付回档对账、4组完整面试追问及10题推理。",
+      "checks": "全部51标题逐节自足性及原主题人工验收；标题去重/时序单位范围与链接一致性检查；AWS DR策略、PG17 PITR、Kubernetes探针一手核验；Python实际通过7项恢复预算/读取下界/容量与RTO/RPO计算。未运行真实PITR/探针/云切换/安全恢复GameDay，正文明确边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
