@@ -748,10 +748,21 @@
       "completed_at": "2026-11-19T00:40:08.691Z",
       "original_blob_sha": "12836b8de11c91ce26d0553ad39c9208993f0ced",
       "content_blob_sha": "1db4b64cfbcbcc6237dd9acba417f6facbfcccdd",
-      "commit_sha": null,
+      "commit_sha": "b6b113afa301df7624be01a8928b1559868beb18",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖HA容错DRResilience、MTBFMTTDMTTAMTTRRTO/RPO/BIA、全部故障域与共同故障、应用无状态跨AZ健康检查伸缩探针停机发布弹性、数据同步异步选主脑裂备份PITR连接、四DR策略/全部备份维度3-2-1、宣布隔离DNS追平重连回切、全部降级/八项演练/误区/框架与五原题；补恢复预算下界/权限密钥控制面独立/日志链逻辑损坏安全恢复/唯一写权世代/支付回档对账、4组完整面试追问及10题推理。",
       "checks": "全部51标题逐节自足性及原主题人工验收；标题去重/时序单位范围与链接一致性检查；AWS DR策略、PG17 PITR、Kubernetes探针一手核验；Python实际通过7项恢复预算/读取下界/容量与RTO/RPO计算。未运行真实PITR/探针/云切换/安全恢复GameDay，正文明确边界。"
+    },
+    {
+      "path": "01-架构师基础能力/03-非功能性需求/04-安全、合规、隐私、审计与数据治理.md",
+      "status": "completed",
+      "completed_at": "2026-11-19T06:35:39.412Z",
+      "original_blob_sha": "02ee2c0b71f360121b129fd2f4c54a99c78987f2",
+      "content_blob_sha": "d750af5e1afc03f3d36a410beb47890d15e2bf2d",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖Security by Design与七原则、STRIDE六类与五高风险入口、认证授权/OAuth/OIDC/MFA/RBAC/ABAC/ReBAC、IDOR租户混淆代理、四级分类/加密密钥/秘密CI、隐私权利与全链路删除/备份/AI副本、审计与失败语义、四类合规/证据、治理责任质量血缘、SDLC所有扫描、事件响应；完整面试回答追问及10题推理。",
+      "checks": "全文逐节自足性及原主题覆盖人工检查；官方OWASP/RFC9700/OIDC/SSDF1.1/GDPR/PCI/ISO/AICPA核验；Python授权模型实际通过12项正常与负向检查，审计JSON解析通过，围栏配对与标题去重通过。未接入真实身份密钥平台、数据库、渗透或删除演练，正文明确边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
