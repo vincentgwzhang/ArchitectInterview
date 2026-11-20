@@ -803,10 +803,21 @@
       "completed_at": "2026-11-20T12:35:59.839Z",
       "original_blob_sha": "0f56331a0d1dab3456697d7258b45e328daafaec",
       "content_blob_sha": "a03c8d332da663b7d4e88c16ed7ef1f0a5e8b5bb",
-      "commit_sha": null,
+      "commit_sha": "a2952ee249f9394ea0017f1e24b692c9567aae8b",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖全部协作成因/立场利益/共同问题字段/RACI DACI Advice/八步共识与DisagreeCommit/四类冲突及处置情绪/七类团队契约/全部影响力方法/标准五领域与例外五字段/跨库案例四方案/错误/STAR和原五自测；补权限映射、升级模板、CDC语义/副本延迟只读边界、技术撤权与组织退出、真实经历准备模板、三组完整面试追问及10题推理。",
       "checks": "全部正文标题逐节自足性和原主题人工核对；Atlassian DACI一手职责核验；标题去重/围栏配对/来源链接检查通过；案例均明确虚构，无需执行代码，未进行真实协调或数据库CDC迁移测试，正文明确范围。"
+    },
+    {
+      "path": "01-架构师基础能力/04-架构沟通与领导力/04-Build-vs-Buy、技术选型与供应商评估.md",
+      "status": "completed",
+      "completed_at": "2026-11-20T18:30:39.460Z",
+      "original_blob_sha": "3e19973f079f5b153bd7a530600e465c8f62d870",
+      "content_blob_sha": "512f97b764ade56c91d4e416856ddb9dfb9fcefd",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖六模式/五驱动/BuildBuy全部TCO与三年敏感性/十评分维度/技术安全商业全部尽调/向量PoC原指标及失败安全导出演进运营/全部锁定与退出/身份平台原优势风险及六控制/ADR触发/错误与五原自测；补现金和机会成本去重、TCO反转交点、Recall定义/零越权范围、迁移下界与增量切换、OIDC中断密钥撤销/Breakglass、三组完整面试追问与十题推理。",
+      "checks": "全部正文标题逐节自足性和原主题人工验收；OIDC Core1.0 errata2、RFC9700、FinOps官方核验；Python实际通过6项TCO/敏感性交点/迁移单位计算；标题去重、围栏配对、链接核验通过。无真实报价、benchmark或模型调用；未执行真实PoC/身份接入/迁移，正文明确范围。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
