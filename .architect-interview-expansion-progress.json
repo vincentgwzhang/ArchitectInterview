@@ -770,10 +770,21 @@
       "completed_at": "2026-11-19T18:33:35.078Z",
       "original_blob_sha": "aa5c097d0aa807ff894a9ccbae810993f7d970e1",
       "content_blob_sha": "10a128b137dadb392b40dbc2fc0c75e6a4e75abe",
-      "commit_sha": null,
+      "commit_sha": "3e0ca6e10178fc7dc4157f18d368019d416f6bf9",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖Monitoring/Observability、GoldenSignals/RED/USE、全部指标日志链路关联、告警/SLO、可运营交付/Runbook自动化、成本归属单位成本、FinOps三阶段全部优化手段、可靠性安全护栏、AI全部观测与优化、原五自测；补分位数聚合/基数算例/采样丢失/遥测故障/业务结果及三组面试追问和10题完整答案。",
       "checks": "所有正文小节自足性与原主题人工核对；Prometheus/OpenTelemetry/GoogleSRE/FinOps一手来源核验；Python实际通过8项基数、BurnRate、单位成本与质量成本算例；JSON解析、围栏配对、标题去重通过。未部署采集告警或执行故障/云优化实验，正文明确范围。"
+    },
+    {
+      "path": "01-架构师基础能力/04-架构沟通与领导力/01-面向技术团队和业务方表达架构方案.md",
+      "status": "completed",
+      "completed_at": "2026-11-20T00:34:15.783Z",
+      "original_blob_sha": "f9a6a73f160f11d3b53df0f35fb0bb5222be7383",
+      "content_blob_sha": "30cc5b9de2abfae34f87e3eedf47c7bb23a0ebed",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖六类Audience/多地区表达、十项表达结构、业务指标与术语、技术边界契约数据NFR安全失败迁移、四类语句强度、图与叙事、七类证据与事实假设意见、异议处理、会前中后/书面版本记录、重构投资面试/全部原错误和五自测；补业务技术模板、Outbox失败与幂等示意、决策权与异步评论、三组完整面试追问及十题推理。",
+      "checks": "全部27标题逐节自足性和原主题人工检查；C4作者站与ADR原站核验；标题无重复、6围栏配对、两来源链接有效；案例均虚构，时序手工核对未实际渲染，未运行供应商接口/真实会议/负载测试，正文说明范围。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
