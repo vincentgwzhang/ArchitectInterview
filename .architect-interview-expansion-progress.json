@@ -792,10 +792,21 @@
       "completed_at": "2026-11-20T06:35:17.857Z",
       "original_blob_sha": "9dafba04aefe7b79a862789d4171e4c6026444c8",
       "content_blob_sha": "db92f033ee7360862e322571c69fd223fc4c1832",
-      "commit_sha": null,
+      "commit_sha": "0f32b121213bc6bb21ab9eacea1070f29bc74139",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖四工具职责/RFC全部结构与适用、五角色四反馈、RFC-ADR关系替代、全部评审质量维度三级风险、七项去瓶颈、欧洲市场路线图能力及原指标边界、NowNextLater/全部依赖/关键路径/使能、治理闭环/全部错误与原五自测；补三模板、状态与授权/异常到期/Outbox失败、关键路径资源算例、三组完整面试追问及10题答案。",
       "checks": "全部正文标题逐节自足性与原主题人工验收；ADR原站与AWS官方流程核验并区分指南和组织规范；标题去重/围栏配对/来源链接检查通过，Python实际核验并行8周与资源受限11周两算例；未执行真实评审PoC或政策自动化，正文明确范围。"
+    },
+    {
+      "path": "01-架构师基础能力/04-架构沟通与领导力/03-跨团队协作、冲突处理与共识建立.md",
+      "status": "completed",
+      "completed_at": "2026-11-20T12:35:59.839Z",
+      "original_blob_sha": "0f56331a0d1dab3456697d7258b45e328daafaec",
+      "content_blob_sha": "a03c8d332da663b7d4e88c16ed7ef1f0a5e8b5bb",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖全部协作成因/立场利益/共同问题字段/RACI DACI Advice/八步共识与DisagreeCommit/四类冲突及处置情绪/七类团队契约/全部影响力方法/标准五领域与例外五字段/跨库案例四方案/错误/STAR和原五自测；补权限映射、升级模板、CDC语义/副本延迟只读边界、技术撤权与组织退出、真实经历准备模板、三组完整面试追问及10题推理。",
+      "checks": "全部正文标题逐节自足性和原主题人工核对；Atlassian DACI一手职责核验；标题去重/围栏配对/来源链接检查通过；案例均明确虚构，无需执行代码，未进行真实协调或数据库CDC迁移测试，正文明确范围。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
