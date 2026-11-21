@@ -836,10 +836,21 @@
       "completed_at": "2026-11-21T06:36:53.945Z",
       "original_blob_sha": "8608b2c0f657776f48fc377b241879bc1bf0b211",
       "content_blob_sha": "662d465a03e23bf94e512337948b500f11728902",
-      "commit_sha": null,
+      "commit_sha": "9bc525d34e2804c7a590244c238598a73a24d0b6",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖Element/VirtualDOM/Reconciliation/Fiber、更新与类型key启发式、索引key错位、RenderCommit/并发主线程/纯度/layout阻塞/节点计算输入性能、原三自测；纠正全局最小HostUpdate、展开身份作用域/重置/嵌套定义、快照批处理、current候选/优先级实现边界、EffectStrictMode、transition限制及性能排查、三组完整面试追问与十题推理。",
       "checks": "全部30标题逐节自足性及原主题人工核对；React官方当前文档、React18并发与旧18.2协调背景核验；Node24实际通过5组纯JS身份模型场景，标题去重10围栏配对与链接检查通过。模型非React实现；JSX/DOM焦点/调度与性能未浏览器运行，正文明确边界。"
+    },
+    {
+      "path": "02-React与前端架构/01-React核心原理/02-函数组件、Hooks、闭包与组件生命周期.md",
+      "status": "completed",
+      "completed_at": "2026-11-21T12:33:12.348Z",
+      "original_blob_sha": "dcf6a975937699a70c238c17b218998051f1d1d8",
+      "content_blob_sha": "f421ada1278089f4bc46dec6192ec063af60b509",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖独立Render快照、Hooks顺序与槽位、Closure与函数更新、独立CustomHook状态、Effect依赖与清理、StrictMode、原三自测及全部常见问题；扩展state/ref/派生/共享选择、异步竞态与取消失败语义、版本边界、资源所有权、架构排障、完整面试追问及十题推理答案。",
+      "checks": "全部26标题逐节自足性与原主题人工核对；React官方当前19.3文档核验，普通例兼容18+并隔离19 API边界；Node实际通过独立闭包、替换更新模型、函数更新模型和旧快照保留断言；8围栏配对及标题去重检查通过。JSX仅人工检查，未运行React DOM、网络、StrictMode或性能测试，正文明确。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
