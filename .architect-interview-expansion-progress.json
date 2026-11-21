@@ -825,10 +825,21 @@
       "completed_at": "2026-11-21T00:35:19.994Z",
       "original_blob_sha": "1520ab8a4e0ee38ffbbfd6e8130ed28267dffe0b",
       "content_blob_sha": "4bc1c8a0c6c204d3627fc4f8eb226989db476c49",
-      "commit_sha": null,
+      "commit_sha": "37d2ad901ebfe21fcdff50e601368f13c8c6ccbf",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖全部复盘结构/时间线证据/RootCause与三分析法/行动与软删除例子/项目复盘Premortem/风险公式登记全部类别/四响应/九治理工具/六护栏/例外/十效果指标/架构债务/Schema发布全部缺口与改进/原面试错误五自测；补责任边界、时间口径、概率尺度限制、行动实际效果、扩展收缩并发回填与回退窗口、三个完整面试追问及十题推理。",
       "checks": "全部正文标题逐节自足性及原主题人工验收；GoogleSRE与PostgreSQL17官方结构变更核验；Python实际通过6项时间线/风险/行动比例计算；标题去重围栏配对链接检查通过。未执行真实数据库迁移/策略/事故演练，正文明确验证范围。"
+    },
+    {
+      "path": "02-React与前端架构/01-React核心原理/01-Virtual-DOM、Diff、Reconciliation与Fiber.md",
+      "status": "completed",
+      "completed_at": "2026-11-21T06:36:53.945Z",
+      "original_blob_sha": "8608b2c0f657776f48fc377b241879bc1bf0b211",
+      "content_blob_sha": "662d465a03e23bf94e512337948b500f11728902",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖Element/VirtualDOM/Reconciliation/Fiber、更新与类型key启发式、索引key错位、RenderCommit/并发主线程/纯度/layout阻塞/节点计算输入性能、原三自测；纠正全局最小HostUpdate、展开身份作用域/重置/嵌套定义、快照批处理、current候选/优先级实现边界、EffectStrictMode、transition限制及性能排查、三组完整面试追问与十题推理。",
+      "checks": "全部30标题逐节自足性及原主题人工核对；React官方当前文档、React18并发与旧18.2协调背景核验；Node24实际通过5组纯JS身份模型场景，标题去重10围栏配对与链接检查通过。模型非React实现；JSX/DOM焦点/调度与性能未浏览器运行，正文明确边界。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
