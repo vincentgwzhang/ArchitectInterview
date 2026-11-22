@@ -880,10 +880,21 @@
       "completed_at": "2026-11-22T12:32:55.565Z",
       "original_blob_sha": "06218cb8dca5ef890347d26f9dc950d22dedff08",
       "content_blob_sha": "68c56669c4dd1a37883d819493cb2363546bc47e",
-      "commit_sha": null,
+      "commit_sha": "56316cf986e5b43cf4c2d06e833afd47b1285665",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖ErrorBoundary范围故障域/上报、Suspense代码和框架数据/粒度、ConcurrentRender纯度Transition、SSRShell/SelectiveHydration/RSC边界/缓存隔离错配代理、FailureUX与全部原三自测；补可恢复边界实现与草稿/lazy拒绝、输入与结果双状态、Node流入口错误取消预算、HTTP晚失败CSP序列化资源预算、三组完整面试追问及十题推理。",
       "checks": "全部正文标题逐节自足性与原知识点人工核对；React官方五来源当前19.3核验并区分18同步基础与19异步Action；标题去重与围栏配对/示例依赖一致性检查通过。JSX和Node模式仅人工检查，未实际运行React/HTTP流/浏览器水合/CDN/CSP/性能故障实验，正文明确。"
+    },
+    {
+      "path": "02-React与前端架构/02-前端应用架构/01-SPA、MPA、SSR、SSG、ISR与React-Server-Components.md",
+      "status": "completed",
+      "completed_at": "2026-11-22T18:39:38.263Z",
+      "original_blob_sha": "7faba2247998fc687d5385b25d4da0e761139ecf",
+      "content_blob_sha": "70ddc2ae984dd2c123a4879f4630a06357604e9b",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖SPA/MPA/SSR/SSG/ISR/RSC全部机制选型、五场景矩阵、SEO预览新鲜度个性化区域容量载荷离线、缓存串用户/静态过期/RSC边界全部误区；补维度正交、路由资源故障、ISR触发失败多副本旧窗口、RSC模块图序列化与SSR组合、数据页面CDN客户端多缓存、容量算例、决策模板演进及三组面试追问十题推理。",
+      "checks": "所有正文小节逐节自足性与原知识点人工核对；React19.3及NextAppRouter16.4.6官方来源核验并限制实现边界；标题去重与4围栏配对/模块示例一致性通过。代码仅人工检查，未运行RSC/水合/ISR/CDN隔离/性能实验；容量算例为推演非benchmark，正文注明。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
