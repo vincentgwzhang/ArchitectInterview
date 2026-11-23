@@ -913,10 +913,21 @@
       "completed_at": "2026-11-23T06:30:56.781Z",
       "original_blob_sha": "d776e7514895f4ece59b4536eb7df4de2db634e8",
       "content_blob_sha": "200a70131ecc7d6ff9a4bdd772b6cf8c1fa52d5d",
-      "commit_sha": null,
+      "commit_sha": "b853c43db68239adff119341ca5946a19e42daff",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖五类状态与派生、Context频率订阅、RTK Slice/Immer/Selector/Middleware/DevTools、Zustand Selector与治理、ServerState QueryKeyGC去重刷新失效乐观加载错误、URL重现、决策顺序及全部误区；补请求作用域/持久化版本敏感清除/并发回滚失败语义、三个完整库示例、迁移排障、三组面试追问十题推理。",
       "checks": "全部正文小节逐节自足性与原主题人工核对；React/RTK/TanStackv5官方文档及Zustand官方README核验；标题去重与6围栏配对及更新/身份一致性检查通过。库示例仅人工检查，未安装运行React/Redux/Zustand/Query/SSR或浏览器测试，正文明确。"
+    },
+    {
+      "path": "02-React与前端架构/02-前端应用架构/04-数据请求：React-Query、缓存、失效、重试与乐观更新.md",
+      "status": "completed",
+      "completed_at": "2026-11-23T12:33:05.613Z",
+      "original_blob_sha": "52f66bbd0173729406007ee816bd361091754f00",
+      "content_blob_sha": "ab82276d6d383017ff61c6218eccd16ab82573d6",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖Key参数Factory、新鲜/GC/触发、Mutation三缓存策略与域事件、Retry分类退避乘法、乐观五步适用、Race取消版本ETag、SSR预取脱水隔离与全部观测；补完整读取/乐观Hook、后台错误UX、Infinity边界、并发回滚A失败B成功、信号与服务器事务区分、三组面试追问及十题推理。",
+      "checks": "全部正文小节逐节自足性与原主题人工核对；TanStackv5五份官方来源核验，兼容回调参数及cacheTime/gcTime边界明确；标题去重与6围栏配对/代码身份和失败路径一致性检查通过。示例仅人工检查，未实际运行React/Query/网络/SSR/浏览器/故障性能实验，正文注明。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
