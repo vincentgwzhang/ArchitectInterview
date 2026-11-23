@@ -891,10 +891,21 @@
       "completed_at": "2026-11-22T18:39:38.263Z",
       "original_blob_sha": "7faba2247998fc687d5385b25d4da0e761139ecf",
       "content_blob_sha": "70ddc2ae984dd2c123a4879f4630a06357604e9b",
-      "commit_sha": null,
+      "commit_sha": "8e0da03c38447557eade1a7294c188386626058c",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖SPA/MPA/SSR/SSG/ISR/RSC全部机制选型、五场景矩阵、SEO预览新鲜度个性化区域容量载荷离线、缓存串用户/静态过期/RSC边界全部误区；补维度正交、路由资源故障、ISR触发失败多副本旧窗口、RSC模块图序列化与SSR组合、数据页面CDN客户端多缓存、容量算例、决策模板演进及三组面试追问十题推理。",
       "checks": "所有正文小节逐节自足性与原知识点人工核对；React19.3及NextAppRouter16.4.6官方来源核验并限制实现边界；标题去重与4围栏配对/模块示例一致性通过。代码仅人工检查，未运行RSC/水合/ISR/CDN隔离/性能实验；容量算例为推演非benchmark，正文注明。"
+    },
+    {
+      "path": "02-React与前端架构/02-前端应用架构/02-组件分层、Feature-based目录与领域边界.md",
+      "status": "completed",
+      "completed_at": "2026-11-23T00:37:09.371Z",
+      "original_blob_sha": "e0ab9e8428dfaa55f9d86cfd8b213bf942f92bab",
+      "content_blob_sha": "93a6e96077e8afc703520473614e29a8cb121ca3",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖全部五组件层/Feature目录与公共index/统一语言Ownership及CartOrderPayment模型/DTOAdapter/单向依赖Lint/SmartPresentational/Package条件和成本/全部反模式；补删除变化验收、完整unknown校验适配器、跨域编排与事件失败、paths运行边界/flat规则绕过/exports非安全封装、SSR客户端图、渐进迁移治理、三组面试追问与十题推理。",
+      "checks": "全部19标题逐节自足性与原主题人工核对；React/TypeScript/ESLint/Node官方来源核验；标题去重与4围栏配对及金额状态一致性检查通过。Adapter与Lint仅人工检查，未编译TS、运行ESLint/React/Storybook/E2E或构建包，正文明确。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
