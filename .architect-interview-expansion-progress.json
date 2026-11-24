@@ -946,10 +946,21 @@
       "completed_at": "2026-11-24T00:33:36.782Z",
       "original_blob_sha": "c7d16987804fa093b6059b2161fcd9cf9c2b5b60",
       "content_blob_sha": "666b2a277d514783fb515be97a204bf0377a51b4",
-      "commit_sha": null,
+      "commit_sha": "4afd4ce3a67c14482eb9366b9acc1af42c9ec72d",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖三指标、p75分段、LCP四阶段与CDN缓存SSR/SSG/Streaming/图片/激活、INP长任务ReactTransition虚拟列表Worker布局抖动、CLS尺寸占位Banner字体、Lab与Field、预算CI/RUM版本回归；补统计和生命周期陷阱、SPA边界、完整面试追问及十题答案。",
       "checks": "逐节自足性及原主题人工核对；Google四指标与优化一手资料及React官方Transition核验；HTML示例及2围栏结构检查。未执行浏览器、React、Lighthouse或RUM，正文明确；案例为虚构推演。"
+    },
+    {
+      "path": "02-React与前端架构/03-性能与用户体验/02-Code-Splitting、Lazy-Loading、Tree-Shaking与Bundle分析.md",
+      "status": "completed",
+      "completed_at": "2026-11-24T06:35:10.691Z",
+      "original_blob_sha": "573a0a4c9ae56146c0d4fe2a7a8d11fd8894a488",
+      "content_blob_sha": "fd019b0a42f4660759437fe3e98fc377e88e8559",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖下载解析编译执行、路由/重型功能切分、Lazy与预取预加载、ESM/CommonJS副作用动态访问、Bundle初始/路由/重复版本Locale/SourceMap/压缩成本、库替换RSCPolyfill第三方共享哈希缓存、CI预算与常见反例；补lazy缓存重试语义、数据代码瀑布、旧Chunk发布恢复、四组面试追问与十题完整推理。",
+      "checks": "全章逐节自足性及原主题人工核对；React lazy/RSC、webpack代码切分与TreeShaking官方资料核验；4围栏配对及代码假设一致性检查。未实际运行React/webpack/浏览器/CI/RUM，正文明确；案例为虚构。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
