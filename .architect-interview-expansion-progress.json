@@ -935,10 +935,21 @@
       "completed_at": "2026-11-23T18:40:41.955Z",
       "original_blob_sha": "253dd37f3001f01f74f2b1f2eeb4494b5f6c2375",
       "content_blob_sha": "d0ffaa90fe48c4c9709fc69ff46a94793241fd81",
-      "commit_sha": null,
+      "commit_sha": "bdf137853ab9140a4a30f07a3bd28e4d006a3e2c",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖自治动机、五种组合模式、Host/Remote、共享版本兼容与降级、缓存回滚、业务域与Shell责任、DesignSystem/平台API/状态、Owner监控灰度E2E及不适用边界；补webpack5双端配置、生命周期与迟到竞态、不可变产物会话固定、供应链和iframe安全、性能及迁移退出、五组完整面试追问与十题推理。",
       "checks": "全部正文小节逐节自足性与原知识点人工核对；webpack官方配置/容器、React错误边界、MDNiframe及postMessage来源核验；6代码围栏配对、标题及接口一致性检查。教学配置与类型未实际执行构建、浏览器或E2E，正文明确验证边界。"
+    },
+    {
+      "path": "02-React与前端架构/03-性能与用户体验/01-Core-Web-Vitals：LCP、INP与CLS.md",
+      "status": "completed",
+      "completed_at": "2026-11-24T00:33:36.782Z",
+      "original_blob_sha": "c7d16987804fa093b6059b2161fcd9cf9c2b5b60",
+      "content_blob_sha": "666b2a277d514783fb515be97a204bf0377a51b4",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖三指标、p75分段、LCP四阶段与CDN缓存SSR/SSG/Streaming/图片/激活、INP长任务ReactTransition虚拟列表Worker布局抖动、CLS尺寸占位Banner字体、Lab与Field、预算CI/RUM版本回归；补统计和生命周期陷阱、SPA边界、完整面试追问及十题答案。",
+      "checks": "逐节自足性及原主题人工核对；Google四指标与优化一手资料及React官方Transition核验；HTML示例及2围栏结构检查。未执行浏览器、React、Lighthouse或RUM，正文明确；案例为虚构推演。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
