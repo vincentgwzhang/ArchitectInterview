@@ -957,10 +957,21 @@
       "completed_at": "2026-11-24T06:35:10.691Z",
       "original_blob_sha": "573a0a4c9ae56146c0d4fe2a7a8d11fd8894a488",
       "content_blob_sha": "fd019b0a42f4660759437fe3e98fc377e88e8559",
-      "commit_sha": null,
+      "commit_sha": "c54b6d8b3a53a8b88ad973c206b6e60a4c695023",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖下载解析编译执行、路由/重型功能切分、Lazy与预取预加载、ESM/CommonJS副作用动态访问、Bundle初始/路由/重复版本Locale/SourceMap/压缩成本、库替换RSCPolyfill第三方共享哈希缓存、CI预算与常见反例；补lazy缓存重试语义、数据代码瀑布、旧Chunk发布恢复、四组面试追问与十题完整推理。",
       "checks": "全章逐节自足性及原主题人工核对；React lazy/RSC、webpack代码切分与TreeShaking官方资料核验；4围栏配对及代码假设一致性检查。未实际运行React/webpack/浏览器/CI/RUM，正文明确；案例为虚构。"
+    },
+    {
+      "path": "02-React与前端架构/03-性能与用户体验/03-缓存策略、CDN、资源压缩与图片优化.md",
+      "status": "completed",
+      "completed_at": "2026-11-24T12:34:57.650Z",
+      "original_blob_sha": "7e48c56f365bb38b6050456bb6e82f41d956a8f3",
+      "content_blob_sha": "38735a9b41c641dd9b0fb16621c1a72a565d7a37",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖层次与OwnerTTL隐私、哈希静态与HTML、CacheControl/ETag/LastModified/smaxage/SWR/Vary、身份语言实验键、CDN源站保护归一化Purge签名区域故障切换成本、压缩、响应式图片管线、失效陈旧与监控；补304报文、Age语义、失效回填竞态、投毒/SSRF/像素限制、四组完整面试追问及十题推理。",
+      "checks": "全部正文小节自足性与原主题人工核对；RFC9111、MDN缓存和压缩、Google响应式图片核验；6围栏配对及报文/图片一致性检查。未实际运行浏览器/CDN/压缩/图片实验，正文明确，案例为虚构。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
