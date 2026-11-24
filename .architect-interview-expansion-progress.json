@@ -968,10 +968,21 @@
       "completed_at": "2026-11-24T12:34:57.650Z",
       "original_blob_sha": "7e48c56f365bb38b6050456bb6e82f41d956a8f3",
       "content_blob_sha": "38735a9b41c641dd9b0fb16621c1a72a565d7a37",
-      "commit_sha": null,
+      "commit_sha": "335fbac4a41469c553b90b7857f2cf52f71757ac",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖层次与OwnerTTL隐私、哈希静态与HTML、CacheControl/ETag/LastModified/smaxage/SWR/Vary、身份语言实验键、CDN源站保护归一化Purge签名区域故障切换成本、压缩、响应式图片管线、失效陈旧与监控；补304报文、Age语义、失效回填竞态、投毒/SSRF/像素限制、四组完整面试追问及十题推理。",
       "checks": "全部正文小节自足性与原主题人工核对；RFC9111、MDN缓存和压缩、Google响应式图片核验；6围栏配对及报文/图片一致性检查。未实际运行浏览器/CDN/压缩/图片实验，正文明确，案例为虚构。"
+    },
+    {
+      "path": "02-React与前端架构/03-性能与用户体验/04-大列表虚拟化、防抖、节流与渲染优化.md",
+      "status": "completed",
+      "completed_at": "2026-11-24T18:34:42.762Z",
+      "original_blob_sha": "104d842ee2211621665c24aed6c7e244091d49a8",
+      "content_blob_sha": "c0d4c17a7165af0d64f8311256afcb499121bee2",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖虚拟化固定动态高度Overscan恢复键盘读屏Sticky无限加载分页、防抖Timer卸载请求竞态、节流首尾与取消、Profiler状态ContextPropsMemo、布局动画Worker长任务rAF及常见反例；补窗口函数、Hook与帧合并代码、IME/自动保存边界、四组完整面试追问及十题答案。",
+      "checks": "全部正文小节自足性及原主题人工核对；React memo/Profiler/useDeferredValue/useEffect、TanStackVirtualv3及MDNrAF一手资料核验；6围栏与生命周期检查；实际执行窗口函数正常/空数据/越界三组纯逻辑检查。未运行React/浏览器/读屏性能实验，正文注明。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
