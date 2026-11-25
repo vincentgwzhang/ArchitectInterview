@@ -990,10 +990,21 @@
       "completed_at": "2026-11-25T00:35:12.956Z",
       "original_blob_sha": "eaed2406b5af3bc364d1713a2e62acb35ac7f0b0",
       "content_blob_sha": "7b8a51d9e98c4847abc5fc3e72ce0302c8b111cc",
-      "commit_sha": null,
+      "commit_sha": "c892122879fe570dd0570ed5d749bb6837954ac4",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖Observability关联、RUM时序长任务分段采样、错误字段SourceMapFingerprintBreadcrumbSession、领域事件SchemaOwnerVersion分类、体验漏斗与因果、TraceContext、聚合告警及Consent最小化保留删除权限遮罩；补失败捕获边界、event去重与聚类区别、采样分母偏差、有界上报Beacon非必达、监控自身健康、四组完整面试追问与十题答案。",
       "checks": "全节自足性及原主题人工核对；W3CTraceContextLevel1、MDNBeacon/error/rejection/ResourceTiming、GoogleVitals及React边界一手资料核验；JSON实际解析通过，2围栏配对与字段一致性检查。未实际部署SDK/浏览器/Trace实验，正文注明，场景为虚构。"
+    },
+    {
+      "path": "02-React与前端架构/04-前端工程化与质量/01-TypeScript类型系统、泛型与严格模式.md",
+      "status": "completed",
+      "completed_at": "2026-11-25T06:35:06.358Z",
+      "original_blob_sha": "a4add245f31b8bf35da55c99c7e0277fd4d2a45e",
+      "content_blob_sha": "0da13ecf555e41a9dd6b8335894ca8d2c6da40a8",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖静态价值运行时边界、strict及四选项迁移、判别联合never、泛型关系、unknown/any/as与Zod、React必需可选互斥事件children品牌ID、OpenAPI/GraphQLTransport领域映射；补结构类型/readonly/satisfies/工具类型、空索引与补丁存在性、状态并发边界、四组完整面试追问与十题推理。",
+      "checks": "原主题及全部正文逐节自足性人工核对；TS官方Handbook/TSConfig、Zod4与React官方类型资料核验；12围栏配对与示例类型关系/版本一致性检查。未实际运行tsc/React/Zod，正文注明，案例为虚构。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
