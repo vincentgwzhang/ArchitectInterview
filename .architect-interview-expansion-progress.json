@@ -1001,10 +1001,21 @@
       "completed_at": "2026-11-25T06:35:06.358Z",
       "original_blob_sha": "a4add245f31b8bf35da55c99c7e0277fd4d2a45e",
       "content_blob_sha": "0da13ecf555e41a9dd6b8335894ca8d2c6da40a8",
-      "commit_sha": null,
+      "commit_sha": "4971dfe44e6cca93556dacc6dfb623143239c09d",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖静态价值运行时边界、strict及四选项迁移、判别联合never、泛型关系、unknown/any/as与Zod、React必需可选互斥事件children品牌ID、OpenAPI/GraphQLTransport领域映射；补结构类型/readonly/satisfies/工具类型、空索引与补丁存在性、状态并发边界、四组完整面试追问与十题推理。",
       "checks": "原主题及全部正文逐节自足性人工核对；TS官方Handbook/TSConfig、Zod4与React官方类型资料核验；12围栏配对与示例类型关系/版本一致性检查。未实际运行tsc/React/Zod，正文注明，案例为虚构。"
+    },
+    {
+      "path": "02-React与前端架构/04-前端工程化与质量/02-Vite、Webpack、Babel、ESLint与代码规范.md",
+      "status": "completed",
+      "completed_at": "2026-11-25T12:38:00.912Z",
+      "original_blob_sha": "d234c90fdc7c9cca91d7a3cc6b7e98500e7e633e",
+      "content_blob_sha": "501278dd0f16c4dcb1d6ba330608239982892f49",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖工具六职责、BuildPipeline可重复与制品晋级、Vite/Webpack选型、Lint六类规则与级别、Monorepo共享配置Workspace缓存影响图锁文件、公开环境Schema、供应链固定扫描脚本SBOM签名升级；修正Vite8Rolldown/Oxc版本边界，补解析HMR与生产差异、Babel语法Polyfill、FlatConfig、四组完整面试追问与十题推理。",
+      "checks": "全节自足性及原主题人工核对；Vite官方现行/迁移/环境/特性、Webpack/Babel/ESLint/typescript-eslint一手资料核验；4围栏与配置覆盖检查；实际执行公开开关true/false/非法值三例。未运行完整工具链/CI或迁移性能实验，正文注明。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
