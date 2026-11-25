@@ -979,10 +979,21 @@
       "completed_at": "2026-11-24T18:34:42.762Z",
       "original_blob_sha": "104d842ee2211621665c24aed6c7e244091d49a8",
       "content_blob_sha": "c0d4c17a7165af0d64f8311256afcb499121bee2",
-      "commit_sha": null,
+      "commit_sha": "4d43e20c32f406881d582c9cd25f3f3f410d7887",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖虚拟化固定动态高度Overscan恢复键盘读屏Sticky无限加载分页、防抖Timer卸载请求竞态、节流首尾与取消、Profiler状态ContextPropsMemo、布局动画Worker长任务rAF及常见反例；补窗口函数、Hook与帧合并代码、IME/自动保存边界、四组完整面试追问及十题答案。",
       "checks": "全部正文小节自足性及原主题人工核对；React memo/Profiler/useDeferredValue/useEffect、TanStackVirtualv3及MDNrAF一手资料核验；6围栏与生命周期检查；实际执行窗口函数正常/空数据/越界三组纯逻辑检查。未运行React/浏览器/读屏性能实验，正文注明。"
+    },
+    {
+      "path": "02-React与前端架构/03-性能与用户体验/05-性能监控、前端埋点、错误追踪与用户体验指标.md",
+      "status": "completed",
+      "completed_at": "2026-11-25T00:35:12.956Z",
+      "original_blob_sha": "eaed2406b5af3bc364d1713a2e62acb35ac7f0b0",
+      "content_blob_sha": "7b8a51d9e98c4847abc5fc3e72ce0302c8b111cc",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖Observability关联、RUM时序长任务分段采样、错误字段SourceMapFingerprintBreadcrumbSession、领域事件SchemaOwnerVersion分类、体验漏斗与因果、TraceContext、聚合告警及Consent最小化保留删除权限遮罩；补失败捕获边界、event去重与聚类区别、采样分母偏差、有界上报Beacon非必达、监控自身健康、四组完整面试追问与十题答案。",
+      "checks": "全节自足性及原主题人工核对；W3CTraceContextLevel1、MDNBeacon/error/rejection/ResourceTiming、GoogleVitals及React边界一手资料核验；JSON实际解析通过，2围栏配对与字段一致性检查。未实际部署SDK/浏览器/Trace实验，正文注明，场景为虚构。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
