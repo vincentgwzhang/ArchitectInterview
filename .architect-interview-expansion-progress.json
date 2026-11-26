@@ -1045,10 +1045,21 @@
       "completed_at": "2026-11-26T06:34:12.314Z",
       "original_blob_sha": "bca489b4741941674abe71949bbc681ce39531c3",
       "content_blob_sha": "0d7e30418f665f80fd24a8c92791d8eb6e654e4d",
-      "commit_sha": null,
+      "commit_sha": "51eca8639fd8f8a6b006e97fd3e868415976ca9c",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖全部XSS入口、清洗编码、CSP nonce/hash报告、CSRF三措施和GET限制、Token各架构、Clickjacking/OpenRedirect/IDOR敏感数据上传、全部依赖治理；补同源同站CORS、BFF续期竞争退出缓存、CSP失败排障、五组完整面试追问十题答案。",
       "checks": "全部正文逐节自足性及原主题人工核对；OWASP XSS/CSRF及MDN CSP/SetCookie核验；6围栏配对和示例静态检查。未运行浏览器、安全扫描、身份提供者或CSP强制测试，正文明确。"
+    },
+    {
+      "path": "02-React与前端架构/05-React架构面试题/01-设计一个大型多团队React应用.md",
+      "status": "completed",
+      "completed_at": "2026-11-26T12:38:49.892Z",
+      "original_blob_sha": "68c77f6ca45d288933814b462a76fdfa3c45f588",
+      "content_blob_sha": "dab0f88caf1d7b5dfc8c16c2b574c02995444940",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖全部需求澄清、Monorepo模块基线与六平台能力、状态分类DTO边界、主干预览测试预算设计系统CODEOWNERS、独立发布ShellRemote契约失败、统一观测和五步演进；补并发幂等缓存隔离、接口与lazy代码、版本清单回滚、四组完整面试追问十题推理。",
+      "checks": "全节自足性及原主题人工核对；React lazy、webpack5 Federation、TS ProjectReferences官方核验；4围栏配对及示例一致性静态检查。未运行React/构建/CI/微前端/性能实验，正文明确。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
