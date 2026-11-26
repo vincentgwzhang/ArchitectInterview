@@ -1034,10 +1034,21 @@
       "completed_at": "2026-11-26T00:29:32.702Z",
       "original_blob_sha": "e031b9929790d94ae280dd66e1bbe442d502948e",
       "content_blob_sha": "bfdde0fda07a1c93ca07c404b3a4d998df29c61c",
-      "commit_sha": null,
+      "commit_sha": "fa2806799b24f9717cabb29525011fd13913f129",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖设计系统六组成、语义Token主题品牌同步、组件变体组合逃生口及受控契约、Storybook全部状态、POUR原生语义键盘焦点标签对比动效、治理版本贡献迁移及指标；补Portal主题、错误关联示例、模态失败排障、四组面试追问十题推理。",
       "checks": "逐节自足性及原主题核对；W3C WCAG2.2/APG及Storybook官方来源；6围栏静态一致性检查，未运行浏览器/Storybook/辅助技术，正文明确。"
+    },
+    {
+      "path": "02-React与前端架构/04-前端工程化与质量/05-前端安全：XSS、CSRF、CSP、Token存储与依赖安全.md",
+      "status": "completed",
+      "completed_at": "2026-11-26T06:34:12.314Z",
+      "original_blob_sha": "bca489b4741941674abe71949bbc681ce39531c3",
+      "content_blob_sha": "0d7e30418f665f80fd24a8c92791d8eb6e654e4d",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖全部XSS入口、清洗编码、CSP nonce/hash报告、CSRF三措施和GET限制、Token各架构、Clickjacking/OpenRedirect/IDOR敏感数据上传、全部依赖治理；补同源同站CORS、BFF续期竞争退出缓存、CSP失败排障、五组完整面试追问十题答案。",
+      "checks": "全部正文逐节自足性及原主题人工核对；OWASP XSS/CSRF及MDN CSP/SetCookie核验；6围栏配对和示例静态检查。未运行浏览器、安全扫描、身份提供者或CSP强制测试，正文明确。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",

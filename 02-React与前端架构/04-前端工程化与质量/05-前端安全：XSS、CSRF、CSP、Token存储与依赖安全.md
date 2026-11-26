@@ -1,57 +1,212 @@
-# 05. 前端安全：XSS、CSRF、CSP、Token 存储与依赖安全
+# 05 前端安全：XSS、CSRF、CSP、Token 存储与依赖安全
 
-## XSS
+前端安全的目标是保护用户身份、数据和操作意图。浏览器代码由用户设备执行，打包进去的密钥和隐藏接口都不能作为秘密或授权边界。应先识别资产、信任边界和失败损失，再组合输出安全、会话、内容策略、后端授权和供应链控制。
 
-React 默认 Escape 插值内容，但以下场景仍危险：
+适用范围：现代浏览器 Web 应用与 React；浏览器支持和第三方 Cookie 策略应按目标版本验证。本文政策和代码为教学示例，未运行浏览器安全测试，不能直接视为完整生产配置。资料于 2026-11-26 核验。
 
-- `dangerouslySetInnerHTML`。
-- 未验证的 URL。
-- 第三方 Widget。
-- DOM API 直接注入。
-- 服务端模板和 Markdown Render。
+## 一、先区分来源、站点与权限
 
-需要展示 HTML 时使用成熟 Sanitizer，并配置允许的 Tag/Attribute。不要自行用 Regex 清理 HTML。
+同源（Same Origin）通常比较协议、主机和端口；同站（Same Site）围绕可注册域及方案等规则判断，不能把两者混用。app.example.com 与不可信的另一个子域可能同站却不同源，所以 SameSite 并不等于只允许同源。
 
-## CSP
+同源策略限制跨源脚本读取某些资源，不阻止所有跨源请求。CORS 是服务端声明允许哪些来源读取响应的机制，不是用户授权，也不是通用 CSRF 防护。跨站表单即使读不到响应，仍可能使服务端发生状态变化。
 
-Content Security Policy 限制 Script、Style、Frame 和连接来源。推荐逐步采用 Nonce/Hash，减少 `unsafe-inline`，先 Report-only 观察违规。
+例如订单应用有浏览器、BFF、订单 API、身份提供者和分析脚本五个边界。BFF（Backend for Frontend）是为浏览器服务的后端，可持有上游令牌并向浏览器发会话 Cookie。每个边界都要说明：谁能提供输入、谁验证身份、谁判断资源权限、失败怎样拒绝。前端角色判断只改善体验，服务端必须独立执行权限检查。
 
-CSP 是 Defense in Depth，不替代输出编码和输入处理。
+## 二、XSS：数据怎样变成了可执行内容
 
-## CSRF
+### 2.1 三种入口与 React 的保护边界
 
-Browser 会自动携带 Cookie，因此攻击站点可能诱导用户发送状态变更请求。防护：
+跨站脚本（Cross-Site Scripting，XSS）让攻击者控制的内容在受信页面上下文中执行。存储型通过评论等持久数据传播；反射型通过请求参数回显；DOM 型由客户端把不可信数据送入危险 DOM 接口。分类可能重叠，真正要追踪的是输入来源、转换过程和输出位置。
 
-- `SameSite` Cookie。
-- CSRF Token。
-- 检查 Origin/Referer。
-- 状态修改不用 GET。
+React 普通文本插值通常会转义内容，使标签作为文字显示。但 dangerouslySetInnerHTML、直接 innerHTML、第三方 Widget、服务端模板、Markdown 允许原始 HTML，以及 URL 等上下文仍需独立审查。转义文本不能证明 href 的协议安全，也不能保证插入 script 内的序列化数据安全。
 
-Authorization Header 不会由 Browser 自动附加，风险模型不同，但仍需防 XSS 窃取 Token。
+安全做法是尽量使用文本节点和框架正常绑定，避免把字符串拼成代码、事件属性或 HTML。若 SSR 把数据嵌入页面，使用框架支持的安全序列化机制；仅 JSON.stringify 并不自动适合所有 HTML/script 上下文，必须防止数据提前结束所在结构。
 
-## Token 存储
+### 2.2 编码、校验与清洗不同
 
-长期 Token 放 `localStorage` 会被 XSS 读取。常见 Web 架构使用 `HttpOnly + Secure + SameSite` Cookie，让 JavaScript 无法读取 Session Token，并配合 CSRF 防护。
+输出编码（Output Encoding）让数据在指定上下文保持数据，例如 HTML 文本转义；输入校验（Validation）限制允许的业务值；HTML 清洗（Sanitization）解析 HTML 并移除不允许结构。它们解决不同问题，不能用“后端过滤过”替代最终输出上下文防护。
 
-选择取决于 BFF、Cross-domain、Mobile 与 Identity Flow。不存在脱离 Context 的唯一答案。
+富文本确需 HTML 时，使用持续维护的成熟 Sanitizer，配置允许标签、属性和 URL 协议，默认不允许事件处理属性与脚本。不要用正则解析清理 HTML。清洗之后再拼接未清洗内容，或让其他库重新解释生成危险结构，都会破坏安全性；服务端渲染所用 DOM 实现及清洗库也需及时更新。
 
-## 其他风险
+以下示例只允许指向指定文档站点的 HTTPS 链接，展示“解析后按结构校验”，并非通用富文本清洗器：
 
-- Clickjacking：`frame-ancestors`/X-Frame-Options。
-- Open Redirect：限制 Redirect Target。
-- IDOR：Backend 强制 Resource Authorization。
-- Sensitive Data：不要放 URL、Log、Analytics、Source Map。
-- File Upload：类型、大小、扫描和隔离。
+```js
+function allowedDocLink(input) {
+  try {
+    const u = new URL(input);
+    if (u.protocol !== 'https:' ||
+        u.origin !== 'https://docs.example.com' ||
+        u.username || u.password) return null;
+    return u.href;
+  } catch {
+    return null;
+  }
+}
+```
 
-## 依赖安全
+返回 null 时显示普通文本或拒绝链接，不要回退使用原始输入。不要用字符串 includes('example.com')，它可能匹配攻击者域名的路径或子串。若业务允许任意外链，应另外说明协议、隐私与导航边界，不能沿用上述单站白名单。
 
-- Lockfile 与可信 Registry。
-- SCA/Vulnerability Scan。
-- 减少依赖和安装 Script。
-- 定期升级。
-- SBOM、Artifact Provenance 和签名。
-- 第三方 Script 使用严格来源与 SRI（适用时）。
+### 2.3 第三方脚本是同页权限
 
-## 总结
+分析、客服和支付 Widget 的脚本通常能访问所在页面的 DOM 和可读数据。可信 CDN 仅说明交付来源，不说明脚本行为始终安全。减少引入、限定运行页面、审查升级；可行时将不可信展示放到隔离 origin 的 sandbox iframe，并只通过验证 origin、source 和消息结构的 postMessage 协议通信。
 
-Browser Security 依赖输出安全、身份会话、CSP、Backend Authorization 和供应链治理的多层防护。前端不能保护 Secret，也不能替代 Server-side Control。
+隔离会增加通信、布局和可访问性成本。不能同时任意放宽 sandbox 权限后仍宣称完全隔离，也不能用 CSP 允许名单代替对第三方能力的审查。
+
+## 三、CSP：限制执行能力的第二道防线
+
+内容安全策略（Content Security Policy，CSP）由响应头等方式限制资源加载和脚本执行。script-src 管脚本，style-src 管样式，connect-src 管 fetch/WebSocket 等连接，frame-src 管嵌入框架；frame-ancestors 则管谁可以嵌入当前页面，两者方向不同。default-src 是许多资源指令的回退，但不是所有指令的通用默认。
+
+下面为服务端生成的响应头模板，RANDOM_PER_RESPONSE 必须替换为每次响应生成的不可预测随机值，并用于相应 script 标签的 nonce 属性：
+
+```http
+Content-Security-Policy: default-src 'none'; script-src 'nonce-RANDOM_PER_RESPONSE'; style-src 'self'; img-src 'self'; connect-src 'self'; object-src 'none'; base-uri 'none'; form-action 'self'; frame-ancestors 'none'
+```
+
+Nonce 是本次响应认可脚本的随机凭据，不是固定构建常量；不能把相同值长期缓存给所有用户，也不能给不可信内容自动补 nonce。Hash 允许内容完全匹配的脚本，适合稳定内联代码，但代码变动必须更新策略。外部脚本、动态加载、样式、图片和认证流程都要按实际需求补配置。不要为解决报错直接加通配符、unsafe-inline 或 unsafe-eval。
+
+先用 Content-Security-Policy-Report-Only 观察，再小范围强制执行；Report-Only 只报告而不阻止。报告可包含路径等敏感信息，应脱敏、限流并设置保留期限。多个强制策略共同约束资源，后加一个宽松策略不会自动取消已有严格策略。
+
+CSP 是纵深防御（Defense in Depth），不能修复已经错误编码的数据，也不能阻止所有获准脚本的恶意行为。Trusted Types 可在支持环境限制部分 DOM 注入接口接受的值，但需要受审查策略，且不能假设所有浏览器支持或把随意透传字符串的策略视为安全。
+
+## 四、CSRF：浏览器自动携带身份造成的风险
+
+跨站请求伪造（Cross-Site Request Forgery，CSRF）利用用户已有登录态，让攻击者页面诱导浏览器向目标站发送操作。攻击者可能不需要读取响应。将请求改成 POST 并不足够，普通 HTML 表单也能 POST。
+
+### 4.1 互补的防护
+
+SameSite 限制 Cookie 在某些跨站场景的发送。Strict 更严格但可能影响外部入口；Lax 常允许顶层安全方法导航，因此状态修改不能使用 GET；None 用于确有跨站需求的场景，并要求 Secure。显式设置属性并测试认证回跳，不能依赖所有浏览器的默认行为一致。
+
+CSRF Token 是攻击页面难以获得、由服务端核验且与会话关联的值。同步 Token 模式由服务端保存或关联令牌，页面/API 获取后在状态变更请求中提交；服务端缺失或不匹配就拒绝。Token 不应放 URL 或日志，不能只是固定字符串。双提交 Cookie 模式也需要正确签名及会话绑定等设计，单纯比较可注入的 Cookie 与参数并不充分。
+
+服务端还可检查 Origin，必要时按严格政策回退 Referer，比对完整允许来源，拒绝不允许来源；代理部署要明确可信的目标来源配置，不能信任任意客户端转发头。缺失头如何处理需按客户端和风险明确，不能一律放行。Fetch Metadata 可补充识别请求上下文，但不能替代兼容性设计。
+
+### 4.2 Authorization 与 CORS 的边界
+
+应用主动添加的 Authorization Bearer Header 不会像 Cookie 一样被浏览器自动为攻击页面附加，因此经典 Cookie CSRF 风险不同。但若 XSS 读取令牌或直接调用应用 API，仍可执行恶意操作。某个接口同时接受 Cookie 与 Bearer 时，必须按真实所有认证入口评估，不能只看前端主要调用方式。
+
+自定义 Header 配合严格 CORS 可形成额外门槛，但服务端必须拒绝缺失该 Header 的不安全路径，并避免接受可由简单表单发送的替代请求。CORS 允许来源要精确，凭证响应不能随意回显 Origin；CORS 既不认证用户，也不检查订单归属。
+
+XSS 往往可以读取同源 CSRF Token 并代表用户发请求，所以 CSRF 不能替代 XSS 防护。敏感操作可要求重新认证、明确确认等额外措施，降低已登录会话被滥用的损失。
+
+## 五、Token 存储与会话架构选择
+
+| 方案 | 收益 | 风险及成本 |
+| --- | --- | --- |
+| localStorage / sessionStorage | JS 易读取并附加到 API | 同源恶意脚本可读取；sessionStorage 生命周期短不等于防 XSS |
+| 内存令牌 | 减少持久化后的暴露窗口 | 刷新丢失，XSS 在活动期仍可使用或窃取 |
+| HttpOnly 会话 Cookie + BFF | JS 不直接读取上游令牌，集中续期和撤销 | 需要服务端会话与扩展能力，必须处理 CSRF |
+| 浏览器直接 OAuth 公共客户端 | 减少 BFF 代理层 | 令牌、刷新、跨域和多标签协调更复杂，不可保存客户端秘密 |
+
+HttpOnly 阻止 JavaScript 直接读取该 Cookie，但同源恶意脚本仍可能发带 Cookie 的请求。Secure 限制通过安全传输发送，不是防止所有窃取；SameSite 控制跨站发送。Cookie 的 Path 不能作为可靠安全隔离边界，Domain 范围应尽量小。
+
+```http
+Set-Cookie: __Host-session=OPAQUE_RANDOM_VALUE; Path=/; Secure; HttpOnly; SameSite=Lax
+```
+
+此例假设 HTTPS、主机限定会话、不设置 Domain；__Host- 前缀在支持浏览器中约束 Secure、Path=/ 和无 Domain。服务端还需安全生成会话 ID、登录后轮换以避免会话固定、空闲与绝对过期、退出撤销，以及匹配属性删除 Cookie。Cookie 删除并不自动撤销已复制的凭据。
+
+BFF 将 OAuth Access/Refresh Token 保存在服务端，浏览器只持有不透明会话标识。代价是代理延迟、会话存储、容量和运维责任；部署需控制上游目标，不能把 BFF 做成任意 URL 转发器。跨站 Cookie 还受浏览器第三方 Cookie 策略影响，不能因配置 SameSite=None 就保证可用。
+
+直接 OAuth 浏览器应用通常采用授权码加 PKCE，并校验回调关联和明确注册的 redirect URI；PKCE 绑定授权请求与换码过程，不解决 XSS。移动端原生安全存储和身份流程不同，不能机械复制 Web Cookie 结论。无论采用哪种架构，短生命周期、最小权限、撤销与异常监控都应明确。
+
+多标签同时刷新可能产生竞争：刷新令牌轮换后，一个请求成功，另一个持旧值失败。设计单次刷新协调和失败处理，避免无限重试或把过期身份留在缓存；服务端语义必须配套，不能靠前端锁宣称跨设备正确。退出登录还要清除用户范围查询缓存和持久数据，避免下一位用户看到上一位的信息。
+
+## 六、其他浏览器风险与服务端责任
+
+### 6.1 Clickjacking 与 Open Redirect
+
+点击劫持（Clickjacking）把页面嵌在透明或误导性的框架中，诱导用户点击。通过响应头 frame-ancestors 限制允许嵌入者，可按兼容需求补 X-Frame-Options。允许合作方嵌入时精确列来源并测试祖先链；只检查当前页 JavaScript 是否顶层不是可靠替代。
+
+开放重定向（Open Redirect）把用户带到攻击站，可能放大钓鱼和身份流程风险。优先用服务端已知目的地 ID 或同源允许路径。解析并验证目标，不用字符串 startsWith 判断“看起来像本站”；协议相对 URL、编码和多次解码可能造成理解差异。身份回调使用精确注册 URI，不能任意接受 returnUrl。
+
+### 6.2 IDOR 与敏感数据
+
+不安全直接对象引用（IDOR）是用户改变资源 ID 后访问他人对象。随机 UUID 降低猜测便利，但不是授权。服务端查询必须将身份、租户、资源和动作结合；同时测读取、修改、导出及批量接口。前端按钮隐藏、路由守卫与缓存键都不能替代后端判断。
+
+敏感数据避免进入 URL、控制台、日志、埋点和错误上报；URL 可能出现在历史、代理日志和引用信息中。Source Map 可能暴露源码与内部路径，公开发布前审查，私有上传也要控制权限。更根本的是不要把秘密打包进代码：关闭 Source Map 不会把前端密钥变成安全秘密。诊断信息保留 traceId 和必要字段，使用允许名单脱敏而非只删除几个已知密码字段。
+
+### 6.3 文件上传
+
+浏览器 accept、扩展名与 MIME 仅能帮助交互，客户端都可绕过。服务端限制大小、数量、解压后体积，核验实际文件类型并按风险扫描；随机生成存储名，不信任用户路径。扫描前隔离文件，状态完成后再允许访问，失败要拒绝并清理。
+
+不可信 HTML/SVG 等主动内容若在应用同源展示，可能变成 XSS 入口。可采用独立来源、下载附件响应与恰当 Content-Type；图片解码或文档转换也需资源限制和隔离。上传成功不代表内容已可信，异步扫描结果与访问权限必须一致。
+
+## 七、依赖与交付供应链
+
+Lockfile 固定解析结果，可信 Registry 降低来源风险，但二者都不能保证包无恶意代码。检查直接及传递依赖、维护状态和必要性；锁文件变动也属于代码审查。SCA（Software Composition Analysis）识别已知漏洞及相关组件，需要结合版本、可达代码和部署环境评估，不能把“零告警”等同绝对安全。
+
+安装脚本可能在构建机执行代码，因此尽量减少、审查或按项目配置限制脚本；在隔离、最小凭证环境安装，防止依赖读取发布密钥。禁用脚本可能破坏原生构建，要明确允许名单并验证制品。定期升级比多年不动后一次大迁移更可控，但自动升级也应经过测试和审查。
+
+SBOM（Software Bill of Materials）记录组件清单，便于发现某漏洞影响哪些制品；来源证明（Artifact Provenance）关联源码、构建身份和流程；签名帮助核验来源及完整性。这些都不证明业务代码没有漏洞，验证者必须检查信任身份与预期仓库，而不只是“存在签名”。
+
+SRI（Subresource Integrity）用内容摘要校验外部资源，适合可固定字节的第三方脚本或样式。跨源资源还需满足相应 CORS 条件；供应商随时改变脚本时摘要会不匹配并阻止加载，必须设计升级及失败体验。SRI 不能限制已获准脚本的权限，也不能覆盖其任意动态子资源。关键业务可考虑自托管经审查版本，但要承担更新责任。
+
+## 八、工程落地与排障顺序
+
+对一个虚构订单应用，可按风险分阶段实施：先封堵直接 HTML 注入和越权，确定会话/CSRF 契约；再上线 Report-Only CSP，梳理第三方并修复来源；随后强制策略、建立依赖升级和制品追踪。不要为了短期兼容永久放开全部策略。
+
+| 现象 | 检查证据 | 处理方向 |
+| --- | --- | --- |
+| 登录回跳后无会话 | Set-Cookie、发送 Cookie、域/路径/SameSite、浏览器阻止原因 | 修复身份流程与部署，避免直接移除防护 |
+| CSP 上线后白屏 | 控制台违规指令、响应头与 nonce、缓存 HTML | 对齐脚本凭据和资源需求，灰度后强制 |
+| API 403 | 区分身份过期、CSRF、资源授权 | 返回稳定错误码和 traceId，避免统一重试 |
+| 切换账户仍见旧数据 | 查询缓存、持久存储和 CDN 键 | 清理身份数据并修正缓存范围 |
+| 第三方脚本加载失败 | 网络、SRI 摘要、CORS、CSP | 核验预期版本，不能删除校验掩盖变更 |
+
+测试必须覆盖“不应成功”的路径：缺失 CSRF Token、错误来源、其他租户资源、清洗后的富文本、不同主题之外的真实页面输出以及退出后的数据访问。浏览器测试与后端授权测试互补；扫描工具无法代替设计审查。安全事件应保留脱敏证据、撤销受影响凭据、回滚或隔离问题版本，再分析根因，不能只隐藏错误提示。
+
+## 九、面试完整回答与追问
+
+**问：React 是否天然防 XSS？**
+
+答：普通文本插值有转义保护，但 raw HTML、DOM 注入、URL、第三方与 SSR 序列化仍是边界。我会减少危险输出接口，对富文本使用成熟清洗器及允许名单，对 URL 做结构化协议/来源校验，再用 CSP 限制执行能力。后端输入校验和前端输出安全必须同时存在。
+
+追问“为什么不能用正则清洗？”答：HTML 的解析和浏览器纠错不是简单字符串匹配，容易漏掉结构组合和属性上下文；应使用维护中的解析清洗实现，且清洗后不再拼入未信任内容。
+
+**问：HttpOnly 能否解决 XSS？**
+
+答：它减少会话 Cookie 被 JS 直接读取的风险，但恶意同源脚本仍可能以当前身份发请求和读取页面数据。需要继续修复注入，限制第三方、采用 CSP，并为敏感操作设置额外验证。
+
+追问“localStorage 一定不能用吗？”答：要按令牌价值、生命周期和架构选择，但不能把长期高权限令牌的持久存储视为无风险默认。BFF 降低浏览器持令牌的暴露，同时增加会话运维和 CSRF 责任。
+
+**问：CORS 是否防 CSRF？**
+
+答：它主要控制跨源读取响应，某些请求仍能发送并造成副作用。Cookie 会自动附带，所以状态变更需要 CSRF Token、SameSite 和来源检查等组合，且 GET 不改变状态。
+
+追问“Bearer Header 呢？”答：攻击页面通常没有令牌且浏览器不会自动附加，经典 CSRF 风险不同；但接口若还接受 Cookie，或存在 XSS，仍须按实际认证路径分析。
+
+**问：如何上线严格 CSP？**
+
+答：先盘点资源和第三方，Report-Only 收集并脱敏违规，修复内联脚本和动态代码，再用 nonce 或 hash 的策略小范围强制，验证认证和失败体验后扩大。HTML 缓存与每响应 nonce 必须一致，不能固定 nonce 或直接放开 unsafe-inline 解决问题。
+
+追问“有 CSP 是否不用清洗？”答：不行，获准脚本和策略配置仍可能有问题；CSP 是额外限制，不是替代上下文输出防护。
+
+**问：供应链怎么防？**
+
+答：减少依赖、锁定来源版本、审查锁文件和安装脚本、隔离最小权限构建、持续漏洞分析与升级，再用 SBOM、来源证明和签名关联实际部署制品。外链静态资源适用时使用 SRI，但需设计摘要更新和失败策略。
+
+追问“签名正确就安全？”答：只能说明制品符合某个签名身份和完整性预期，仍要确认该身份可信且流程对应正确仓库，也不能由此推导无漏洞。
+
+## 十、扫雷自测与速记
+
+1. **同站等于同源吗？** 不等于，子域可能同站不同源，所以 SameSite 不能替代完整来源与权限判断。
+2. **POST 自动防 CSRF 吗？** 不，表单能 POST；需要服务端验证用户操作来源和令牌。
+3. **输入校验可以替代输出编码吗？** 不同输出上下文规则不同，合法业务文本也可能含特殊字符，必须在最终使用位置正确处理。
+4. **HttpOnly 后恶意 JS 无法操作账户吗？** 仍能利用当前页面发请求；保护凭据可读性不等于消除身份滥用。
+5. **Report-Only 会拦截脚本吗？** 不会，它用于观察；要强制策略才会阻止违规行为。
+6. **frame-src 防别人嵌入我吗？** 方向相反，应使用 frame-ancestors 等控制当前页的嵌入者。
+7. **随机订单 ID 能防越权吗？** 不能，服务端必须验证资源归属、租户和动作。
+8. **关闭 Source Map 能保护前端密钥吗？** 不能，交付给浏览器的代码和数据仍可分析，秘密应放可信服务端。
+9. **锁文件与零漏洞告警能保证依赖安全吗？** 不能，已知漏洞库有覆盖边界，包或安装脚本也可能恶意；需要完整供应链治理。
+10. **SRI 会限制脚本读 DOM 吗？** 不会，它校验内容完整性，脚本执行权限仍取决于运行上下文。
+
+速记：XSS 是数据进入执行上下文，CSRF 是身份自动携带而操作意图未验证；CSP 限执行，Cookie 属性分工不同；BFF 转移令牌保管责任；授权永远在服务端；供应链要能追踪到具体制品和构建身份。
+
+## 十一、官方来源与验证说明
+
+- [OWASP XSS Prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html)：上下文编码、清洗与框架边界。
+- [OWASP CSRF Prevention](https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html)：令牌及来源等分层措施。
+- [MDN CSP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/CSP)：nonce/hash、指令及部署方式。
+- [MDN Set-Cookie](https://developer.mozilla.org/en-US/docs/Web/HTTP/Reference/Headers/Set-Cookie)：属性、前缀和浏览器边界。
+
+逐节核对了原章所有 XSS 入口、CSP、CSRF、Token 选择、其他五类风险和依赖控制，并补充失败语义、架构取舍、面试追问与自测推理。示例仅做静态检查，未运行浏览器、身份提供者、扫描、清洗器或 CSP 强制测试；不声称配置已经通过生产安全验收。
