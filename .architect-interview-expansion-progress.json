@@ -1078,10 +1078,21 @@
       "completed_at": "2026-11-27T00:38:05.584Z",
       "original_blob_sha": "c31926b39dab703371605a353b8c86cfc28ecee7",
       "content_blob_sha": "416122718f7681178766eb82f35eea9353900189",
-      "commit_sha": null,
+      "commit_sha": "5117725a5fba75e90edf10edbf5e9eb32369c4aa",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖六问六分类、QueryRedux双真相和URL筛选反例、Schema迁移过期退出清理及敏感存储、派生求和Memo、电商全部状态；补表单基线冲突、URL解析与后退防抖、查询身份gcTime并发回滚、Context订阅SSR隔离、五组完整面试追问十题推理。",
       "checks": "逐节自足性及原主题人工核对；React状态结构/useContext和TanStackQueryv5键/默认行为官方核验；6围栏及解析器键合计一致性静态检查。未运行React/Router/Query/持久化或并发测试，正文明确。"
+    },
+    {
+      "path": "02-React与前端架构/05-React架构面试题/04-如何逐步迁移遗留前端而不中断业务.md",
+      "status": "completed",
+      "completed_at": "2026-11-27T06:34:57.842Z",
+      "original_blob_sha": "4ef609661fbbca5ee8ac296d113ad8114372a75e",
+      "content_blob_sha": "68b6421299538e86aec5b12375189c071d5796fd",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖绞杀者及Bigbang取舍、所有Baseline维度、五集成和五统一契约、迁移顺序、API/BFF防腐、FlagCanary并行对比测试回退RUM、Owner旧码规则Bridge期限删除及全部指标；补Root生命周期示例、兼容扩展收缩/草稿双写、稳定分组副作用与数据回退边界、五组完整面试追问十题推理。",
+      "checks": "全部正文逐节自足性及原主题核对；React createRoot与MDN CustomElements/postMessage官方核验；2围栏及生命周期静态一致性检查。未实际运行框架/代理/通信/灰度/回退测试，正文注明，案例虚构。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
