@@ -1100,10 +1100,21 @@
       "completed_at": "2026-11-27T12:33:33.980Z",
       "original_blob_sha": "40084b07e9ff7c35b29c791eee60e17bbdc89412",
       "content_blob_sha": "85ba1db296d8bcbab9233099b75c618f744f1914",
-      "commit_sha": null,
+      "commit_sha": "74e5db0b64f2cce01c26d4d2064cd03c4ea1b0e3",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖所有PR/预发布门禁、渐进交付六信号、统一SDK六采集分解隐私采样、四SLO、OwnerRunbookSeverity、GoldenPath例外及交付流；补最小样本证据不足、预算算例燃烧率、分母遥测丢失/分位数偏差、幂等回滚和五组完整面试追问十题推理。",
       "checks": "全节自足性与原主题覆盖人工核对；GoogleSRE/WebVitals、W3CTraceContext1、MDNBeacon官方核验；标题表格链接及算例静态一致性检查，无代码围栏。未部署运行CI/SDK/灰度统计/回滚，正文注明，目标数值虚构。"
+    },
+    {
+      "path": "03-AI全栈架构/01-AI与大模型基础/01-Transformer、Token、Embedding与Attention基础.md",
+      "status": "completed",
+      "completed_at": "2026-11-27T18:34:59.157Z",
+      "original_blob_sha": "ffe7eede7b03b0b06318e661844600e35332bc07",
+      "content_blob_sha": "fdfb490120929fab9bb33b752d610cae17118e75",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖Token五影响、Embedding三度量四用途及权限、Attention多头位置公式、Transformer层自回归KV、全部架构影响和原三自测；补QKV维度掩码算例、PrefillDecode/容量公式MHA-MQA-GQA、索引版本分块混检权限与评测、五组完整面试追问十题推理。",
+      "checks": "全节自足性及原主题人工核对；Transformer/GQA/LostInMiddle原论文全文页及MQA原始摘要核验；6围栏与公式容量算例静态检查。未训练/调用模型API/运行GPU检索benchmark，正文明确。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
