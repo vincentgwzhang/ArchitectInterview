@@ -1089,10 +1089,21 @@
       "completed_at": "2026-11-27T06:34:57.842Z",
       "original_blob_sha": "4ef609661fbbca5ee8ac296d113ad8114372a75e",
       "content_blob_sha": "68b6421299538e86aec5b12375189c071d5796fd",
-      "commit_sha": null,
+      "commit_sha": "95f4f53ecd87a5204d09389a0c623769c3f0b611",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖绞杀者及Bigbang取舍、所有Baseline维度、五集成和五统一契约、迁移顺序、API/BFF防腐、FlagCanary并行对比测试回退RUM、Owner旧码规则Bridge期限删除及全部指标；补Root生命周期示例、兼容扩展收缩/草稿双写、稳定分组副作用与数据回退边界、五组完整面试追问十题推理。",
       "checks": "全部正文逐节自足性及原主题核对；React createRoot与MDN CustomElements/postMessage官方核验；2围栏及生命周期静态一致性检查。未实际运行框架/代理/通信/灰度/回退测试，正文注明，案例虚构。"
+    },
+    {
+      "path": "02-React与前端架构/05-React架构面试题/05-如何定义前端平台的质量门禁和可观测性.md",
+      "status": "completed",
+      "completed_at": "2026-11-27T12:33:33.980Z",
+      "original_blob_sha": "40084b07e9ff7c35b29c791eee60e17bbdc89412",
+      "content_blob_sha": "85ba1db296d8bcbab9233099b75c618f744f1914",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖所有PR/预发布门禁、渐进交付六信号、统一SDK六采集分解隐私采样、四SLO、OwnerRunbookSeverity、GoldenPath例外及交付流；补最小样本证据不足、预算算例燃烧率、分母遥测丢失/分位数偏差、幂等回滚和五组完整面试追问十题推理。",
+      "checks": "全节自足性与原主题覆盖人工核对；GoogleSRE/WebVitals、W3CTraceContext1、MDNBeacon官方核验；标题表格链接及算例静态一致性检查，无代码围栏。未部署运行CI/SDK/灰度统计/回滚，正文注明，目标数值虚构。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
