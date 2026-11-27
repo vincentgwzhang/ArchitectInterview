@@ -1067,10 +1067,21 @@
       "completed_at": "2026-11-26T18:38:30.127Z",
       "original_blob_sha": "f242807ab026333e28ca496d548ede9dd6d21c96",
       "content_blob_sha": "fb3b426157f6988a1562a20e20266c68d169fea0",
-      "commit_sha": null,
+      "commit_sha": "f45541ec63976b91d09987ff1fd377f090d47598",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖四目标、全部路由渲染及Streaming、CDN哈希键事件再验证快照成交、SEO元数据结构化链接状态分页、高并发多AZ扩容保护、全部性能安全失败UX；补失效旧回填与版本、回源扇出推导、私有缓存隔离、支付幂等Pending对账、五组完整面试追问十题推理。",
       "checks": "全章逐节自足性及原主题核对；React流官方、NextAppRouter16.4.6 ISR与Google两份SEO官方来源核验；4围栏及报文状态一致性静态检查。未部署框架/CDN/支付/搜索抓取或压测，正文注明，算例为虚构。"
+    },
+    {
+      "path": "02-React与前端架构/05-React架构面试题/03-如何选择全局状态、服务端状态与URL状态.md",
+      "status": "completed",
+      "completed_at": "2026-11-27T00:38:05.584Z",
+      "original_blob_sha": "c31926b39dab703371605a353b8c86cfc28ecee7",
+      "content_blob_sha": "416122718f7681178766eb82f35eea9353900189",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖六问六分类、QueryRedux双真相和URL筛选反例、Schema迁移过期退出清理及敏感存储、派生求和Memo、电商全部状态；补表单基线冲突、URL解析与后退防抖、查询身份gcTime并发回滚、Context订阅SSR隔离、五组完整面试追问十题推理。",
+      "checks": "逐节自足性及原主题人工核对；React状态结构/useContext和TanStackQueryv5键/默认行为官方核验；6围栏及解析器键合计一致性静态检查。未运行React/Router/Query/持久化或并发测试，正文明确。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
