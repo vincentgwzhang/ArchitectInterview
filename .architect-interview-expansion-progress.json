@@ -1122,10 +1122,21 @@
       "completed_at": "2026-11-28T00:37:54.480Z",
       "original_blob_sha": "5c63307030d55243e1ebbf621e44f3c1c07eec00",
       "content_blob_sha": "b8b0a2bfbc91c439f327663d47604da94fdbcb32",
-      "commit_sha": null,
+      "commit_sha": "84132deaf4fc986afbd983097e3d8726b1d679b5",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖五层Prompt、Context组成与六种工程方法、Temperature、原category/confidence Schema、Prompt版本与脱敏预算、六类常见错误；补充信任与执行边界、采样推导、严格校验、重试幂等、评测发布、完整面试追问与10道有答案自测。",
       "checks": "逐节自足性、原主题覆盖、事实版本边界、公式数值、示例Schema与Python一致性、标题围栏链接及重复检查；一手文档核验；代码静态审查未运行，未调用模型API。"
+    },
+    {
+      "path": "03-AI全栈架构/01-AI与大模型基础/03-推理模型、多模态模型与模型能力边界.md",
+      "status": "completed",
+      "completed_at": "2026-11-28T06:38:11.637Z",
+      "original_blob_sha": "153dfec725b908930243ff9524516bc6df723512",
+      "content_blob_sha": "e73b33e95fa770cd37f1f8ebd26371664fddd1c8",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖四类模型、推理适用场景、多模态四类场景及媒体治理、七项能力边界、风险分层、路由降级与评估；补充机制、确定性验证、事务幂等、成本推导、完整面试追问和10道答案自测。",
+      "checks": "逐节自足性、原主题覆盖、研究结论范围、教学数字、伪代码流程、Markdown标题围栏链接及重复内容检查；一手论文核验；伪代码未运行，未调用模型或业务API。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
