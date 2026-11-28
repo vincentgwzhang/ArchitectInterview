@@ -1111,10 +1111,21 @@
       "completed_at": "2026-11-27T18:34:59.157Z",
       "original_blob_sha": "ffe7eede7b03b0b06318e661844600e35332bc07",
       "content_blob_sha": "fdfb490120929fab9bb33b752d610cae17118e75",
-      "commit_sha": null,
+      "commit_sha": "bb940a6793269d90e1c88bcdb3d4320f24abb7c4",
       "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
       "coverage": "原位覆盖Token五影响、Embedding三度量四用途及权限、Attention多头位置公式、Transformer层自回归KV、全部架构影响和原三自测；补QKV维度掩码算例、PrefillDecode/容量公式MHA-MQA-GQA、索引版本分块混检权限与评测、五组完整面试追问十题推理。",
       "checks": "全节自足性及原主题人工核对；Transformer/GQA/LostInMiddle原论文全文页及MQA原始摘要核验；6围栏与公式容量算例静态检查。未训练/调用模型API/运行GPU检索benchmark，正文明确。"
+    },
+    {
+      "path": "03-AI全栈架构/01-AI与大模型基础/02-Prompt、上下文窗口、温度与结构化输出.md",
+      "status": "completed",
+      "completed_at": "2026-11-28T00:37:54.480Z",
+      "original_blob_sha": "5c63307030d55243e1ebbf621e44f3c1c07eec00",
+      "content_blob_sha": "b8b0a2bfbc91c439f327663d47604da94fdbcb32",
+      "commit_sha": null,
+      "sha_note": "Resolve own commit via progress-file history; self commit SHA cannot be embedded.",
+      "coverage": "原位覆盖五层Prompt、Context组成与六种工程方法、Temperature、原category/confidence Schema、Prompt版本与脱敏预算、六类常见错误；补充信任与执行边界、采样推导、严格校验、重试幂等、评测发布、完整面试追问与10道有答案自测。",
+      "checks": "逐节自足性、原主题覆盖、事实版本边界、公式数值、示例Schema与Python一致性、标题围栏链接及重复检查；一手文档核验；代码静态审查未运行，未调用模型API。"
     }
   ],
   "content_standard": "self-contained-interview-preparation-v2",
